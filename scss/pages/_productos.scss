@@ -1,0 +1,17 @@
+/* PRODUCTOS */
+.productos_main {
+    .sidebar {
+        text-transform: uppercase;
+        .navbar {
+            background-color: map-get($colors, bright) !important;
+        }
+        a{
+            color: map-get($colors, dark);
+            text-decoration: none;
+
+            &:hover {
+                border-bottom: solid 2px map-get($colors, primary);
+            }
+        }
+    }
+}

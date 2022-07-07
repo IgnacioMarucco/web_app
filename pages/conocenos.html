@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta Keywords -->
+    <meta name="keywords" content="Mieles Lupita, miel, apicultura, apicola, comprar miel, abeja, colmenas, historia empresa, familia, conocenos, premios, comunidades amigas. ">
+    <!-- Meta Description -->
+    <meta name="description" content="Mieles Lupita: Somos una empresa oriunda de cordoba cuyo objetivo es brindarte la mejor calidad de bienes y servicios para tu emprendimiento apicola. Tambien ofrecemos la mayor variedad de miel de la region. Encontra en nuestro sitio toda la informacion que necesitas, conoce nuestra historia y nuestros logros.">
+    <!-- Favicon -->
+    <link rel="icon" href="../public/favicon.png">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <!-- My CSS -->
+    <link rel="stylesheet" href="../css/main.css">
+    
+    <title>Mieles Lupita - Todo lo que necesitas del mundo apicola - Conocenos</title>
+</head>
+<body>
+    <div class="main-wrapper">
+        <!-- Header (logo + barra de navegacion) -->
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+                <div class="container">
+                    <!-- Logo -->
+                    <a class="navbar-brand shake" href="../index.html" ><img id="logo" src="../public/logo-final.webp" alt="Logo empresa"></a>
+                    <!-- Hamburguer Menu -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <!-- Navbar -->
+                    <div class="collapse navbar-collapse text-uppercase" id="navbarNav">
+                        <ul class="navbar-nav text-center ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="../index.html">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="conocenos.html">Conocenos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="productos.html">Productos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="servicios.html">Servicios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contacto.html">Contacto</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="#"><i class="bi bi-person-fill"></i></a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="#"><i class="bi bi-cart"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav> 
+        </header>
+
+        <!-- Main Section. Historia de la empresa + Comunidades Amigas +  Premios obtenidos -->
+        <main>
+            <section class="historia"> 
+                <div class="parallax imgBackgroundOne">
+                    <h2 class="textoSobreImagen">Conocenos</h2>
+                </div>
+                <p class="textoConocenos">Luego de trabajar por 20 años en la industria agropecuaria, los fundadores Gabriel Pepper y Javier Carriado aprendimos lo necesario para mantener un esquema productivo que cumpla las exigencias del mercado actual. Desde el año 2002 nos encargamos de la produccion, distribucion y venta de miel en toda la provincia de La Pampa.<br>
+                Con la experiencia adquirida, comenzamos a proveer material apicola en todo el pais, desde indumentaria para el pequeño productor hasta maquinaria para grandes empresas.
+                </p>
+            </section>
+
+            <!-- Comunidades Amigas - Offcanvas Menu -->
+            <section class="comunidadesAmigas d-flex justify-content-center">
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offCanvasLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title">Comunidades Amigas:</h5>
+                    </div>
+                </div>
+                <button class="btn btn-primary m-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#comunidadesAmigas" aria-controls="offcanvasExample">Conoce nuestras comunidades amigas</button>
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="comunidadesAmigas" aria-labelledby="offcanvasComunidadesAmigasLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasComunidadesAmigasLabel">Comunidades Amigas</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div>A traves de los años, fuimos conociendo grandes entusiastas de la apicultura que comparten nuestra pasion. No podemos hacer menos que recomendar sus productos y servicios.</div>
+                        <ul class="nav flex-column ">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark"href="#">Abejas Argentinas</a>
+                                <img src="../public/comunidad1.webp" alt="Logo comunidad Abejas Argentinas.">
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#">Comida y Salud</a>
+                                <img src="../public/comunidad2.webp" alt="Logo comunidad comida y salud.">
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#">Comunidad Nature</a>
+                                <img src="../public/comunidad3.webp" alt="Logo comunidad Nature.">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Premios -->
+            <section class="premios">   
+                <div class="parallax imgBackgroundTwo">
+                    <h2 class="textoSobreImagen">Premios y Reconocimientos</h2>
+                </div>
+                <div class="textoConocenos">
+                    <p>Con la llegada de Julien Valk a la empresa, nos propusimos lograr la mejor miel de la region, compitiendo en los eventos mas prestigiosos. Nuestra busqueda por la excelencia nos obliga a competir no solo con el resto del mercado, sino con nosotros mismos.</p>
+                    <h5>Premios:</h5>
+                    <ul class="listaPremios color-dark">
+                        <li>Premio a la tendencia gastronomica, 2009.</li>
+                        <li>Reconocimiento a las empresas mas productivas, 2016.</li>
+                        <li>Productores apicultores en Pilar, 2018.</li>
+                        <li>Premios al sabor argentino, 2020.</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="footer bg-dark text-white pt-2">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <h5 class="text-uppercase font-weight-bold text-warning">Links Utiles</h5>
+                        <ul class="text-white">
+                            <li> <a href="productos.html#accordionPoliticas">Envios</a></li>
+                            <li><a href="productos.html#accordionPoliticas">Devoluciones</a></li>
+                            <li><a href="#">Login</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h5 class="text-uppercase font-weight-bold text-warning">Contacto</h5>
+                        <ul>
+                            <li><i class="bi bi-house-door"></i>Avenida San Lorenzo 1234, Cordoba, Argentina</li>
+                            <li><i class="bi bi-telephone-fill"></i>+54 0303 222222</li>
+                            <li><i class="bi bi-envelope"></i>mieleslupita@gmail.com</li>
+                            <li>Redes Sociales: <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a> <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h6>Copyright &copy; 2022 Mieles Lupita</h6>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>

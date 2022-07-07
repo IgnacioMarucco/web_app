@@ -1,0 +1,59 @@
+/* ANIMACIONES */
+/* shake */
+.shake {
+    animation: shake 1s ease 1;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    15%,
+    45%,
+    75% {
+        transform: translateX(-3px);
+    }
+
+    30%,
+    60%,
+    90% {
+        transform: translateX(3px);
+    }
+}
+
+/* fade in top*/
+.fadeInTop {
+    animation: fadeInTop 1s ease 1;
+}
+
+@keyframes fadeInTop {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -20%, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/* fade in bottom*/
+.fadeInBottom {
+    animation: fadeInBottom 1s ease 1;
+}
+
+@keyframes fadeInBottom {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 20%, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}

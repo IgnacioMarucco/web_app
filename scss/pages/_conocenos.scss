@@ -1,0 +1,42 @@
+// PAGINA CONOCENOS
+.historia, .premios {
+    padding: 10px;
+    text-align: center;
+    .imgBackgroundOne{
+        background: url("./../public/apicultor_familia2.webp");
+        z-index: -1; 
+    }
+    .imgBackgroundTwo{
+        background-image: url("./../public/apicultor_familia.webp");
+        z-index: -1;
+    }
+    
+    .parallax {
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    
+        height: 35vh;
+        max-width: 1000px;
+        margin: 0 auto;
+        position: relative;
+    }
+    .textoSobreImagen {
+        color: map-get($colors, bright);
+        position: absolute;
+        text-shadow: 2px 2px map-get($colors, dark);;
+        
+        width: 100%;
+        text-align: center;
+        top: 30%;
+    }
+
+    .textoConocenos {
+        font-style: italic;
+        padding: 10px;
+    }
+}
+
+
+

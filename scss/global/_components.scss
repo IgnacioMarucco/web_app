@@ -1,0 +1,98 @@
+// HEADER
+header {
+    ul {
+        display: flex;
+        align-items: center;
+    }
+    font-family: $font-header;
+    #logo{
+        width: 60px;
+    }
+    // Hover effect. Reemplazado solo en el index por la legibilidad en hero section
+    li > a:hover {
+    color: map-get($colors, primary) !important;
+    border-bottom: solid 1px map-get($colors, primary);
+    }
+}
+
+// FOOTER
+footer {
+    font-family: $font-header !important;
+    li{
+        margin: 10px 0px;
+    }
+    a{
+        color: map-get($colors, bright);
+        text-decoration: none;
+
+        &:hover {
+            color: map-get($colors, primary) !important;
+        }
+    }
+    h6 {
+        color: map-get($colors, bright) !important;
+        margin-top: 10px;
+    }
+}
+
+// CARDS
+.card {
+    background-color: map-get($colors, primary);
+    min-width: 250px;
+
+    &:hover{
+        transform: scale(1.05);
+    }
+    .card-img-top {
+        @include size (200px, 200px);
+    }
+    .card-text{
+        width: 200px;
+        text-align: center;
+        font-size: medium !important;
+    }
+    p {
+        font-size: larger;
+    }
+}
+// ACCORDION
+.accordion{
+    max-width: 800px;
+
+    .accordion-button:not(.collapsed){
+        background-color: map-get($colors, primary);
+        color: map-get($colors, dark);    
+    }
+}
+
+
+
+// BOOTSTRAP ICONS
+.bi-facebook, .bi-instagram {
+    font-size: 2em;
+    &:hover {
+        color: map-get($colors, primary);
+    }
+}
+.bi-person-fill, .bi-cart {
+    font-size: 1.3rem !important;
+}
+
+// BOOTSTRAP BUTTONS utilizando extend y mixin
+.btn-primary {
+    @include btn-style(map-get($colors, secondary), (1px solid map-get($colors, secondary)));
+}
+
+.btn-primary:hover {
+    @include btn-style(map-get($colors, secondary-pseudo), (1px solid map-get($colors, secondary-pseudo)));
+}
+
+.btn-primary:focus {
+    @extend .btn-primary:hover;
+    box-shadow: none !important;
+}
+
+.btn-primary:active {
+    @extend .btn-primary:hover;
+    box-shadow: none !important;
+}

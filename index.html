@@ -4,43 +4,254 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta Keywords -->
+    <meta name="keywords" content="Mieles Lupita, miel, apicultura, apicola, comprar miel, abeja, colmenas.">
+    <!-- Meta Description -->
+    <meta name="description" content="Mieles Lupita: Somos una empresa oriunda de cordoba cuyo objetivo es brindarte la mejor calidad de bienes y servicios para tu emprendimiento apicola. Tambien ofrecemos la mayor variedad de miel de la region. Encontra en nuestro sitio toda la informacion que necesitas.">
+    <!-- Favicon -->
+    <link rel="icon" href="public/favicon.png">
+
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <!-- My CSS -->
     <link rel="stylesheet" href="css/main.css">
-    <title>Desafio JS</title>
+
+    <title>Mieles Lupita - Todo lo que necesitas del mundo apicola</title>
 </head>
 <body>
-    <header>
-        <h1>Bienvenido</h1>
-    </header>
-    
-    <main class="container">
-        <section>
-            <h2 class="text-center">Productos</h2>
-            <div class="mb-3">
-                <form action="">
-                    <input type="text" id="buscador" placeholder="Buscar">
-                </form>
-                
-            </div>
-            <div id="grid-productos" class="row g-3 row-cols-auto justify-content-center">
-            </div>
-        </section>
+    <div class="main-wrapper">
 
-        <section>
-            <h2 class="text-center">Carro</h2>
-            <div id="lista-carro" class="d-flex flex-column">
+        <!-- Header (logo + barra de navegacion) -->
+        <header class="header-index">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+                <div class="container">
 
-            </div>
-        </section>
+                    <!-- Logo -->
+                    <a class="navbar-brand shake" href="index.html" ><img id="logo" src="public/logo-final.webp" alt="Logo empresa"></a>
 
+                    <!-- Hamburguer Menu -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <!-- Navbar -->
+                    <div class="collapse navbar-collapse text-uppercase" id="navbarNav">
+                        <ul class="navbar-nav text-center ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages/conocenos.html">Conocenos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages/productos.html">Productos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages/servicios.html">Servicios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages/contacto.html">Contacto</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="#"><i class="bi bi-person-fill"></i></a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="#"><i class="bi bi-cart"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav> 
+        </header>
         
-    </main>
+        <!-- Main Section -->
+        <main class="index_main">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    <script src="main.js"></script>
+            <!-- Hero Section -->
+            <section class="heroSection">
+                <div class="hero--txtBackground">
+                    <div class="heroSection--txt fadeInTop">
+                        <h1>Mieles Lupita</h1>
+                        <p>Encontra toda la variedad de productos de calidad que necesitas en nuestra tienda. Tambien ofrecemos servicios de primer nivel para tu emprendimiento y nos aseguramos que recibas atencion personalizada en todo momento.</p>
+                        <a href="pages/productos.html"><button type="submit" class="btn btn-primary shake mt-3">Catalogo</button></a>
+                    </div>
+                </div>
+
+                <!-- Beneficios -->
+                <div class="benefits container-fluid text-center color-bright">
+                    <div class="row">
+                        <div class="col-12 col-md-4 mb-2"><i class="bi bi-truck"></i> Envios a todo el pais</div>
+                        <div class="col-12 col-md-4 mb-2"><i class="bi bi-shield-check"></i> Aprobado por SENASA</div>
+                        <div class="col-12 col-md-4 mb-2"><i class="bi bi-clock"></i> Atendemos las 24 horas</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Productos Destacados Seccion -->
+            <section class="container destacados pt-3">
+                <h2 class="my-4">Productos Destacados</h2>
+                <div class="row g-3 row-cols-auto justify-content-center">
+                    <div class="col">
+                        <div class="card align-items-center">
+                            <h5 class="card-title">Miel de Eucalipto</h5>
+                            <img class="card-img-top " src="public/miel_eucaliptus.webp" alt="Imagen de Miel de Eucalipto.">
+                            <p>$99</p>
+                            <a href="#" class="btn btn-primary">Agregar al carro</a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card align-items-center">
+                            <h5 class="card-title">Miel de Algarrobo</h5>
+                            <img class="card-img-top " src="public/miel_algarrobo.webp" alt="Imagen de miel de algarrobo.">
+                            <p>$99</p>
+                            <a href="#" class="btn btn-primary">Agregar al carro</a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card align-items-center">
+                            <h5 class="card-title">Miel de Citrus</h5>
+                            <img class="card-img-top " src="public/miel_eucaliptus.webp" alt="Imagen de miel de citrus.">
+                            <p>$99</p>
+                            <a href="#" class="btn btn-primary">Agregar al carro</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Newsletter-->
+            <form class="newsletter container text-center" action="">
+                <div class="container-fluid d-flex flex-column align-items-center">
+                    <h5 class="my-4">Subscribete para recibir ofertas y novedades</h5>
+                    <div class="form-floating text-dark mb-4 d-flex flex-row">
+                        <input type="email" class="form-control" placeholder="@">
+                        <label for="floatingInput">Email</label>
+                        <button type="submit" class="btn btn-success">Enviar</button>
+                    </div>
+                    
+                </div>
+            </form>
+
+            <!-- Video mostrando clases de apicultura -->
+            <section class="tutorias">
+                <h3 class="text-center mb-4">Sumate a nuestros cursos de apicultura!</h3>
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/apCLQgCqeec" title="YouTube video" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <!-- Negocios donde encontrarnos y Proveedores. -->
+            <section class="negocios">
+                <div id="carouselNegocios" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="2000">
+                            <img src="public/empresas.webp" class="d-block w-100 mt-4" alt="">
+                            <div class="carousel-caption d-md-block">
+                                <h3>Encontranos en:</h3>
+                            </div>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="2000">
+                            <img src="public/proveedores.webp" class="d-block w-100 mt-4" alt="">
+                            <div class="carousel-caption d-md-block">
+                                <h3>Nuestros clientes:</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonios de clientes -->
+            <section class="testimonios mt-5 color-dark">
+                <h3 class="text-center mb-5">Testimonios</h3>
+                <div id="carouselTestimonios" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <!-- Cliente uno -->
+                        <div class="carousel-item active" data-bs-interval="10000">
+                            <div class="item">
+                                <div class="item-img">
+                                    <img src="public/testimonio-a.webp" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="item-txt">
+                                    <h5>Gabriela Ramos</h5>
+                                    <blockquote>Excelente atencion. La variedad de productos me sorprendio, asi como su calidad. El delivery tardo lo acordado.</blockquote>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Cliente dos -->
+                        <div class="carousel-item" data-bs-interval="10000">
+                            <div class="item">
+                                <div class="item-img">
+                                    <img src="public/testimonio-b.webp" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="item-txt">
+                                    <h5>Javier Carriado</h5>
+                                    <blockquote>Tienen los mejores precios. Llevo años comprando aqui y la unica vez que tuve un problema me cambiaron el producto en el acto, recomendado.</blockquote>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Cliente tres -->
+                        <div class="carousel-item" data-bs-interval="10000">
+                            <div class="item">
+                                <div class="item-img">
+                                    <img src="public/testimonio-c.webp" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="item-txt">
+                                    <h5>Maria Martin</h5>
+                                    <blockquote>Muy atentos. Necesite trasladar gran cantidad de material apicola y todo fue solucionado en cuestion de horas.</blockquote>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselTestimonios"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselTestimonios"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer-->
+        <footer class="bg-dark text-white pt-2">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <h5 class="text-uppercase font-weight-bold text-warning">Links Utiles</h5>
+                        <ul class="text-white">
+                            <li> <a href="pages/productos.html#accordionPoliticas">Envios</a></li>
+                            <li><a href="pages/productos.html#accordionPoliticas">Devoluciones</a></li>
+                            <li><a href="#">Login</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h5 class="text-uppercase font-weight-bold text-warning">Contacto</h5>
+                        <ul>
+                            <li><i class="bi bi-house-door"></i>Avenida San Lorenzo 1234, Cordoba, Argentina</li>
+                            <li><i class="bi bi-telephone-fill"></i>+54 0303 222222</li>
+                            <li><i class="bi bi-envelope"></i>mieleslupita@gmail.com</li>
+                            <li>Redes Sociales: <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a> <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h6>Copyright &copy; 2022 Mieles Lupita</h6>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

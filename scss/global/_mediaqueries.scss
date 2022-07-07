@@ -1,0 +1,86 @@
+// MEDIA QUERIES
+//PANTALLA TABLET
+
+@media screen and (min-width: $tablet) {
+    //PAGINA INDEX
+    .header-index {
+        .bg-dark {
+            // Transparencia sobre hero section
+            background: #0000 !important;
+        }
+        // Legibilidad links
+        .nav-link {
+            color: map-get($colors, bright) !important;
+        }
+        .active {
+            color: map-get($colors, primary) !important;
+        }
+    }
+
+    // GRID Index
+    .index_main {
+        display: grid;
+        grid-template-areas: 
+        "hero hero"
+        "destacados destacados"
+        "newsletter newsletter"
+        "tutorias negocios"
+        "testimonios testimonios"
+        ;
+    }
+    // Ajustes Secciones
+    .heroSection {
+        // hero section bajo header
+        margin-top: -6.7rem;
+        min-height: 100vh;
+        p {
+            max-width: 40vw;
+        }
+    }
+    .newsletter input {
+        min-width: 300px;
+    }
+    .negocios{
+        max-width: 400px;
+        justify-self: center;
+        align-self: center;
+    }
+
+    //PAGINA SERVICIOS
+    .serviciosDescripcion {
+        max-width: 70vw;
+        margin: auto;
+    }
+    //PAGINA CONTACTO
+    .contacto_main {
+        grid-template-areas: 
+        "info info"
+        "horarios formulario"
+        "googleMap googleMap"
+        ;
+    }
+
+}
+
+//PANTALLA LAPTOP
+
+@media screen and (min-width: $laptop) {
+    // Ajustes PAGINA PRODUCTOS
+    .productos_main {
+        grid-template-areas: 
+        'sidebar gridproductos'
+        'devoluciones devoluciones'
+        ;
+    }
+
+    // Ajustes PAGINA CONTACTO
+    .contacto_main {
+        grid-template-areas: 
+        "info horarios formulario"
+        "googleMap googleMap googleMap"
+        ;
+    }
+    .googleMap {
+        max-width: 80vw;
+    }
+}

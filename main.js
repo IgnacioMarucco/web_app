@@ -18,6 +18,8 @@ const eucalipto = new Producto(1, `Miel de Eucalipto`, 100, 0);
 const algarrobo = new Producto(2, `Miel de Algarrobo`, 150, 0);
 const citrus = new Producto(3, `Miel de Citrus`, 200, 0);
 const girasol = new Producto(4, `Miel de Girasol`, 250, 0);
+const polen = new Producto(5, `Polen de Abeja`, 200, 0);
+const propoleo = new Producto(6,`Propoleo`, 300, 0);
 
 
 
@@ -27,6 +29,8 @@ arrayProductos.push(eucalipto);
 arrayProductos.push(algarrobo);
 arrayProductos.push(citrus);
 arrayProductos.push(girasol);
+arrayProductos.push(polen);
+arrayProductos.push(propoleo);
 
 // Array de productos del carro
 let arrayCarro = [];
@@ -70,7 +74,7 @@ function mostrarProductos() {
 		containerCard.className = `col`;
 		containerCard.innerHTML = `<div class="card align-items-center">
 									<h4 class="card-title">${producto.nombre}</h4>
-									<img class="card-img-top" src="img/${producto.id}.webp" alt="Imagen de ${producto.nombre}">
+									<img class="card-img-top" src="../img/${producto.id}.webp" alt="Imagen de ${producto.nombre}">
 									<h6>$${producto.precio}</h6>
 									<a id="${producto.id}" class="btn btn-primary btnAgregarCarro">Agregar al carro</a>
 									<div>`;

@@ -1,0 +1,71 @@
+// Fonts:
+@import url('https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+// Variables:
+// map
+$colors: (
+    primary: #fcab31,
+    secondary: #0f2535,
+    secondary-pseudo: #1b4463,
+    alternative: #0b9442,
+    bright: #FFF,
+    dark: #000
+);
+
+// Crear clases para colores con each:
+@each $color, $code in $colors {
+    .color-#{$color} {
+        color: $code;
+    }
+};
+
+// Fuentes
+$font-header: "Anybody", Helvetica, sans-serif;
+$font-text: Verdana, serif;
+
+// Media Queries Width
+$tablet: 768px;
+$laptop: 1024px;
+
+// Headings, paragraph, anchor tag     font families
+h1,h2,h3,h4,h5,h6{
+    font-family: $font-header;
+    color: map-get($colors, dark);
+}
+p {
+    font-family: $font-text;
+    color: map-get($colors, dark);
+}
+a {
+    font-family: $font-header;
+}
+
+// Font-Sizes
+// each loop
+$font-size-list : h1, h2, h3, h4, h5, h6, p;
+$font-size-base : 16px;
+$font-size-upper : 40px;
+$font-size-dec : 4px;
+@each $element in $font-size-list{
+    #{$element} {
+        font-size : ($font-size-upper / $font-size-base) + rem;
+        }
+    $font-size-upper : $font-size-upper - $font-size-dec;
+}
+
+// Mixins size y btn-style
+@mixin size ($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin btn-style ($background, $border) {
+	background-color: $background;
+	border: $border;
+}
+
+// Extend con placeholder selector
+%display-flex-column{
+    display: flex;
+    flex-direction: column;
+}

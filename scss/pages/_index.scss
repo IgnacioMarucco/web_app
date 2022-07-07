@@ -1,0 +1,81 @@
+// PAGINA INDEX
+// SECTION HERO
+.heroSection {
+    margin-top: -1rem;
+    min-height: 90vh;
+    
+    @extend %display-flex-column;
+
+    justify-content: flex-end;
+    
+    background: linear-gradient(180deg,#0009,#0002, #0009), url("./../public/colmenas.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .hero--txtBackground{
+        
+        padding: 1rem;
+        background: rgb(0,0,0);
+        background: linear-gradient(360deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.03) 100%);
+        .heroSection--txt {
+            padding: 10px;
+            
+            h1,p{
+                font-weight: bolder;
+                color: map-get($colors, bright);
+                text-shadow: 1px 1px #000;
+            }
+            
+        }
+    }
+    .benefits {
+        font-size: 1.5rem;
+    }
+}
+
+// SECTION PRODUCTOS DESTACADOS
+.destacados {
+    text-align: center;
+}
+
+// SECTION NEWSLETTER
+.newsletter{
+    max-width: 550px;
+    padding: 30px 0;
+
+    input {
+        min-width: 200px;
+    }
+}
+
+// SECTION TUTORIAS
+.tutorias {
+    align-self: center;
+}
+// SECTION NEGOCIOS
+.negocios{
+    .carousel-caption {
+        top: 0;
+    } 
+}
+
+// SECTION TESTIMONIOS
+.testimonios {
+    .item {
+        margin: 0 auto;
+        text-align: center;
+        max-width: 500px;
+    }
+
+    .item-img {
+        margin: 0 auto;
+        @include size (200px, 200px);
+    }
+
+    .item-txt {
+        font-style: italic;
+    }
+}
+
+
