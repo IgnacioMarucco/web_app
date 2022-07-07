@@ -147,21 +147,3 @@ function mostrarCarro() {
 }
 
 window.onload = mostrarProductos();
-
-// Local Storage - Practica
-// let nombre = prompt(`ingresar nombre`);
-// let edad = Number(prompt(`ingresa edad`));
-// localStorage.setItem(`nombre`, nombre);
-// localStorage.setItem(`edad`, edad);
-
-// let nombreJSON = localStorage.getItem(`nombre`);
-// let edadJSON = JSON.parse(localStorage.getItem(`edad`));
-
-// console.log(nombreJSON)
-// console.log(edadJSON)
-
-// // alert(`El nombre ingresado es ${JSON.parse(nombreJSON)} y la edad es ${JSON.parse(edadJSON)} años.`);
-
-// localStorage.setItem(`arrayProductos`, JSON.stringify(arrayProductos));
-
-

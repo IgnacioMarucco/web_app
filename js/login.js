@@ -52,10 +52,6 @@ function tryLogin(e) {
     }
 }
 
-// const nombreLogueado = document.getElementById(`nombreLogueado`);
-// nombreLogueado.innerHTML = ``;
-
-
 // Validaciones test:
 // const emailLogin = document.getElementById(`emailLogin`);
 // const passwordLogin = document.getElementById(`passwordLogin`);
