@@ -75,4 +75,10 @@ export const mostrarCarro = () => {
 	comprarBtn.addEventListener('click', calcularCuotas);
 }
 
+// Funcion para mostrar la cantidad de elementos del carro en el HTML
+const cantidadCarroTexto = document.getElementById(`cantidadCarro`);
+const cantidadCarroFuncion = () => {
+  let cantidadCarro = arrayCarro.length;
+  cantidadCarroTexto.innerHTML = `(${cantidadCarro})`;
+}
 
