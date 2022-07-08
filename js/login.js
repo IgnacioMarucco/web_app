@@ -1,7 +1,7 @@
 const arrayDatos = [];
 
-// Funcion storeData
-const storeData = (e) => {
+// Funcion registro
+const registro = (e) => {
     e.preventDefault();
     const nombreReg = document.getElementById(`nombreReg`).value;
     const telefonoReg = document.getElementById(`telefonoReg`).value;
@@ -24,8 +24,8 @@ const storeData = (e) => {
 }
 
 
-// Funcion tryLogin
-const tryLogin = (e) => {
+// Funcion login
+const login = (e) => {
     e.preventDefault(); 
 
     const emailLogin = document.getElementById(`emailLogin`).value;
@@ -49,9 +49,9 @@ const tryLogin = (e) => {
 }
 
 const formularioReg = document.getElementById(`formularioReg`);
-formularioReg.addEventListener(`submit`, storeData);
+formularioReg.addEventListener(`submit`, registro);
 const formularioLogin = document.getElementById(`formularioLogin`);
-formularioLogin.addEventListener(`submit`, tryLogin);
+formularioLogin.addEventListener(`submit`, login);
 
 // Validaciones test:
 // const emailLogin = document.getElementById(`emailLogin`);
