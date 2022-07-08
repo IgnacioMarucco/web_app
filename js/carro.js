@@ -1,7 +1,7 @@
 import {arrayProductos} from './productos.js';
 
 // Array de productos del carro
-const arrayCarro = [];
+let arrayCarro = [];
 
 // Funcion para calcular el monto de las cuotas
 const calcularCuotas = () => {
@@ -33,6 +33,7 @@ export const agregarCarro = (event) => {
 	} else {
 		arrayCarro.find((element)=> element.id == identificador).cantidad += 1;
 	}
+  cantidadCarroFuncion();
 }
 
 // Funcion para eliminar elementos del carro
@@ -42,6 +43,7 @@ export const eliminarCarro = (event) => {
 	arrayCarro = arrayCarro.filter((element) => element.id != identificador);
 	
 	mostrarCarro();
+  cantidadCarroFuncion();
 }
 
 // Funcion para mostrar en HTML el carro de compras 
@@ -72,3 +74,5 @@ export const mostrarCarro = () => {
 	const comprarBtn = document.querySelector("#comprarBtn");
 	comprarBtn.addEventListener('click', calcularCuotas);
 }
+
+
