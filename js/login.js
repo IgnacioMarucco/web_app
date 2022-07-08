@@ -1,12 +1,7 @@
-const formularioReg = document.getElementById(`formularioReg`);
-formularioReg.addEventListener(`submit`, storeData);
-const formularioLogin = document.getElementById(`formularioLogin`);
-formularioLogin.addEventListener(`submit`, tryLogin);
-
 const arrayDatos = [];
 
 // Funcion storeData
-function storeData(e) {
+const storeData = (e) => {
     e.preventDefault();
     const nombreReg = document.getElementById(`nombreReg`).value;
     const telefonoReg = document.getElementById(`telefonoReg`).value;
@@ -30,7 +25,7 @@ function storeData(e) {
 
 
 // Funcion tryLogin
-function tryLogin(e) {
+const tryLogin = (e) => {
     e.preventDefault(); 
 
     const emailLogin = document.getElementById(`emailLogin`).value;
@@ -52,6 +47,11 @@ function tryLogin(e) {
         console.log(`Datos ingresados incorrectos.`);
     }
 }
+
+const formularioReg = document.getElementById(`formularioReg`);
+formularioReg.addEventListener(`submit`, storeData);
+const formularioLogin = document.getElementById(`formularioLogin`);
+formularioLogin.addEventListener(`submit`, tryLogin);
 
 // Validaciones test:
 // const emailLogin = document.getElementById(`emailLogin`);

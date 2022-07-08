@@ -1,8 +1,6 @@
 //Primera entrega de Proyecto Final: Objetos, Arrays, Metodo de busqueda y filtrado
 let costoTotal = 0;
 
-const buscador = document.getElementById(`buscador`);
-buscador.addEventListener(`input`, mostrarProductos);
 // Clase constructora para productos:
 class Producto {
 	constructor(id, nombre, precio, cantidad) {
@@ -36,7 +34,7 @@ arrayProductos.push(propoleo);
 let arrayCarro = [];
 
 // Funcion para calcular el costo total al usuario:
-function costoTotalFuncion() {
+const costoTotalFuncion = () => {
 	costoTotal = arrayCarro.reduce(
 		(acumulador, elemento) => acumulador + elemento.precio * elemento.cantidad,
 		0
@@ -44,7 +42,7 @@ function costoTotalFuncion() {
 }
 
 // Funcion para calcular el monto de las cuotas
-function calcularCuotas() {
+const calcularCuotas = () => {
 	let cantidadCuotas = Number(prompt(`¿En cuantas cuotas desea realizar la compra de $${costoTotal}? (3, 6 o 12 cuotas)`));
 	if (!(cantidadCuotas == 3 || cantidadCuotas == 6 || cantidadCuotas == 12)) {
 		alert(`Ingrese una cantidad de cuotas valida.`);
@@ -60,7 +58,7 @@ function calcularCuotas() {
 
 // DOM
 // Mostrar grilla de productos en el HTML:
-function mostrarProductos() {
+const mostrarProductos = () => {
 	let gridProductos = document.getElementById(`grid-productos`);
 	gridProductos.innerHTML = ``;
 	// Tomo como padre ese div, ahora genero a partir del arrayProductos una grid completa de productos.
@@ -92,13 +90,13 @@ function mostrarProductos() {
 	cardBtn.forEach((boton) => boton.addEventListener("click", mostrarCarro));
 }
 
-function filtrarProductos() {
+const filtrarProductos = () => {
 	let arrayProductosFiltrados = arrayProductos.filter(elemento => elemento.nombre.toLowerCase().includes(`${buscador.value.toLowerCase()}`));
 	return arrayProductosFiltrados;
 }
 
 // Funcion para agregar al array del carro los productos elegidos por el usuario
-function agregarCarro(event) {
+const agregarCarro = (event) => {
 	let identificador = Number(event.target.id);
 	if (!(arrayCarro.some((element) => element.id == identificador))){
 		arrayCarro.push(arrayProductos.find((element) => element.id == identificador));
@@ -109,7 +107,7 @@ function agregarCarro(event) {
 }
 
 // Funcion para eliminar elementos del carro
-function eliminarCarro(event) {
+const eliminarCarro = (event) => {
 	let identificador = Number(event.target.id.slice(7));
 
 	arrayCarro = arrayCarro.filter((element) => element.id != identificador);
@@ -118,7 +116,7 @@ function eliminarCarro(event) {
 }
 
 // Funcion para mostrar en HTML el carro de compras 
-function mostrarCarro() {
+const mostrarCarro = () => {
 	costoTotalFuncion();
 	let containerList = document.getElementById(`lista-carro`);
 	containerList.innerHTML = ``;
@@ -145,5 +143,6 @@ function mostrarCarro() {
 	const comprarBtn = document.querySelector("#comprarBtn");
 	comprarBtn.addEventListener('click', calcularCuotas);
 }
-
+const buscador = document.getElementById(`buscador`);
+buscador.addEventListener(`input`, mostrarProductos);
 window.onload = mostrarProductos();
