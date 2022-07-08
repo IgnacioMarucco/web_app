@@ -28,6 +28,7 @@ function storeData(e) {
     localStorage.setItem(`arrayDatos`, arrayDatosJSON);
 }
 
+
 // Funcion tryLogin
 function tryLogin(e) {
     e.preventDefault(); 
