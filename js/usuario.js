@@ -1,7 +1,7 @@
-const arrayDatos = [];
+export const arrayDatos = [];
 
 // Funcion registro
-const registro = (e) => {
+export const registro = (e) => {
     e.preventDefault();
     const nombreReg = document.getElementById(`nombreReg`).value;
     const telefonoReg = document.getElementById(`telefonoReg`).value;
@@ -25,7 +25,7 @@ const registro = (e) => {
 
 
 // Funcion login
-const login = (e) => {
+export const login = (e) => {
     e.preventDefault(); 
 
     const emailLogin = document.getElementById(`emailLogin`).value;
@@ -42,7 +42,6 @@ const login = (e) => {
         const nombreLogueado = document.getElementById(`nombreLogueado`);
         nombreLogueado.innerHTML = `${usuario.nombreReg}`;
         console.log(nombreLogueado.innerHTML)
-        // console.log(`Bienvenido de vuelta, ${usuario.nombreReg}.`);
     }else {
         console.log(`Datos ingresados incorrectos.`);
     }
