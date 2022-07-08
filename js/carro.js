@@ -33,17 +33,13 @@ export const agregarCarro = (event) => {
 	} else {
 		arrayCarro.find((element)=> element.id == identificador).cantidad += 1;
 	}
-  cantidadCarroFuncion();
 }
 
 // Funcion para eliminar elementos del carro
 export const eliminarCarro = (event) => {
 	let identificador = Number(event.target.id.slice(7));
-
 	arrayCarro = arrayCarro.filter((element) => element.id != identificador);
-	
 	mostrarCarro();
-  cantidadCarroFuncion();
 }
 
 // Funcion para mostrar en HTML el carro de compras 
@@ -51,6 +47,7 @@ export const mostrarCarro = () => {
 	costoTotalFuncion();
 	let containerList = document.getElementById(`lista-carro`);
 	containerList.innerHTML = ``;
+  cantidadCarroFuncion();
 	for (const producto of arrayCarro) {
 		let itemCarro = document.createElement(`div`);
 
@@ -69,15 +66,14 @@ export const mostrarCarro = () => {
 						<a id="comprarBtn" class="btn btn-success">Comprar ahora!</a>`;
 	
 	containerList.appendChild(total);
-
 	
 	const comprarBtn = document.querySelector("#comprarBtn");
 	comprarBtn.addEventListener('click', calcularCuotas);
 }
 
 // Funcion para mostrar la cantidad de elementos del carro en el HTML
-const cantidadCarroTexto = document.getElementById(`cantidadCarro`);
 const cantidadCarroFuncion = () => {
+  const cantidadCarroTexto = document.getElementById(`cantidadCarro`);
   let cantidadCarro = arrayCarro.length;
   cantidadCarroTexto.innerHTML = `(${cantidadCarro})`;
 }
