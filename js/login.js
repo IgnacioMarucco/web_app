@@ -41,7 +41,7 @@ export const login = (e) => {
     } else if (usuario.passwordReg == passwordLogin){
         const nombreLogueado = document.getElementById(`nombreLogueado`);
         nombreLogueado.innerHTML = `${usuario.nombreReg}`;
-        console.log(nombreLogueado.innerHTML)
+        console.log(nombreLogueado.innerHTML);
     }else {
         console.log(`Datos ingresados incorrectos.`);
     }

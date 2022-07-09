@@ -2,7 +2,7 @@
 import {arrayProductos} from './productos.js';
 import { agregarCarro } from './carro.js';
 import { mostrarCarro } from './carro.js';
-import {arrayDatos, registro, login} from './usuario.js';
+import {arrayDatos, registro, login} from './login.js';
 
 
 // // Funcion para obtener los formatos de cada producto
