@@ -3,25 +3,18 @@ import {arrayProductos} from './productos.js';
 // Array de productos del carro
 let arrayCarro = [];
 
-// Funcion para calcular el monto de las cuotas
-const calcularCuotas = () => {
-	let cantidadCuotas = Number(prompt(`¿En cuantas cuotas desea realizar la compra de $${costoTotalFuncion()}? (3, 6 o 12 cuotas)`));
-	if (!(cantidadCuotas == 3 || cantidadCuotas == 6 || cantidadCuotas == 12)) {
-		alert(`Ingrese una cantidad de cuotas valida.`);
-		calcularCuotas();
-	} else {
-		let costoCuota = costoTotalFuncion() / cantidadCuotas;
-		let total = document.getElementById(`total`);
-
-		total.innerHTML = `<p>Total: $${costoTotalFuncion()}</p>
-                      <p>Tu compra sera en ${cantidadCuotas} cuotas de $${costoCuota.toFixed(2)}</p>`;
+// Funcion para verificar si existe ya un carrito de compras, si es asi, tomar sus valores.
+export const existeCarro = () => {
+	let arrayCarroLS = JSON.parse(localStorage.getItem(`arrayCarro`));
+	if(arrayCarroLS) {
+		arrayCarro = arrayCarroLS;
+		mostrarCarro();
 	}
 }
 
-// Funcion para calcular el costo total al usuario:
-export const costoTotalFuncion = () => {
-	let costoTotal = arrayCarro.reduce((acumulador, elemento) => acumulador + elemento.precio * elemento.cantidad, 0);
-  return costoTotal;
+const guardarCarro = () => {
+	let arrayCarroJSON = JSON.stringify(arrayCarro);
+	localStorage.setItem(`arrayCarro`, arrayCarroJSON);
 }
 
 // Funcion para agregar al array del carro los productos elegidos por el usuario
@@ -33,18 +26,23 @@ export const agregarCarro = (event) => {
 	} else {
 		arrayCarro.find((element)=> element.id == identificador).cantidad += 1;
 	}
+	
+	guardarCarro();
+	mostrarCarro();
 }
 
 // Funcion para eliminar elementos del carro
 export const eliminarCarro = (event) => {
 	let identificador = Number(event.target.id.slice(7));
 	arrayCarro = arrayCarro.filter((element) => element.id != identificador);
+
+	guardarCarro();
 	mostrarCarro();
 }
 
 // Funcion para mostrar en HTML el carro de compras 
 export const mostrarCarro = () => {
-	costoTotalFuncion();
+	let costoTotal = costoTotalFuncion();
 	let containerList = document.getElementById(`lista-carro`);
 	containerList.innerHTML = ``;
   cantidadCarroFuncion();
@@ -62,7 +60,7 @@ export const mostrarCarro = () => {
 	let total = document.createElement(`div`);
 	total.setAttribute("id", `total`);
 	total.className = `d-flex flex-column`
-	total.innerHTML = `<p>Total: $${costoTotalFuncion()}</p>
+	total.innerHTML = `<p>Total: $${costoTotal}</p>
 						<a id="comprarBtn" class="btn btn-success">Comprar ahora!</a>`;
 	
 	containerList.appendChild(total);
@@ -78,3 +76,24 @@ const cantidadCarroFuncion = () => {
   cantidadCarroTexto.innerHTML = `(${cantidadCarro})`;
 }
 
+// Funcion para calcular el monto de las cuotas
+const calcularCuotas = () => {
+	let costoTotal = costoTotalFuncion();
+	let cantidadCuotas = Number(prompt(`¿En cuantas cuotas desea realizar la compra de $${costoTotal}? (3, 6 o 12 cuotas)`));
+	if (!(cantidadCuotas == 3 || cantidadCuotas == 6 || cantidadCuotas == 12)) {
+		alert(`Ingrese una cantidad de cuotas valida.`);
+		calcularCuotas();
+	} else {
+		let costoCuota = costoTotal / cantidadCuotas;
+		let total = document.getElementById(`total`);
+
+		total.innerHTML = `<p>Total: $${costoTotal}</p>
+                      <p>Tu compra sera en ${cantidadCuotas} cuotas de $${costoCuota.toFixed(2)}</p>`;
+	}
+}
+
+// Funcion para calcular el costo total al usuario:
+export const costoTotalFuncion = () => {
+	let costoTotal = arrayCarro.reduce((acumulador, elemento) => acumulador + elemento.precio * elemento.cantidad, 0);
+  return costoTotal;
+}

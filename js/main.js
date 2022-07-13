@@ -1,7 +1,6 @@
 //Segunda entrega de proyecto final: JSON + Storage + DOM + Eventos
 import {arrayProductos} from './productos.js';
-import { agregarCarro } from './carro.js';
-import { mostrarCarro } from './carro.js';
+import { agregarCarro, mostrarCarro,existeCarro } from './carro.js';
 import {arrayDatos, registro, login} from './login.js';
 
 
@@ -57,7 +56,7 @@ const mostrarProductos = () => {
 	// Agrego el event listener a cada boton (que tienen id unico), para pushear el producto comprado al arrayCarro
 	const cardBtn = document.querySelectorAll(".btnAgregarCarro");
 	cardBtn.forEach((boton) => boton.addEventListener("click", agregarCarro));
-	cardBtn.forEach((boton) => boton.addEventListener("click", mostrarCarro));
+	// cardBtn.forEach((boton) => boton.addEventListener("click", mostrarCarro));
 }
 
 // Funcion para filtrar los productos a mostrar:
@@ -72,7 +71,7 @@ const filtrarProductos = () => {
 
 window.onload = mostrarProductos();
 
-
+window.onload = existeCarro();
 
 
 
