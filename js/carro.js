@@ -50,7 +50,9 @@ export const mostrarCarro = () => {
 		let itemCarro = document.createElement(`div`);
 
 		itemCarro.className = `d-flex flex-row justify-content-between`;
-		itemCarro.innerHTML = `<p>${producto.nombre}</p><p>$${producto.precio} c/u</p><p>Cantidad: ${producto.cantidad}</p><a  href="#"><i class="bi bi-x-square-fill btnEliminarCarro" id="remove-${producto.id}" ></i></a><br>`;
+		itemCarro.innerHTML = `<p>${producto.nombre}</p>
+                        <p>$${producto.precio} c/u</p><p>Cantidad: ${producto.cantidad}</p>
+                        <a  href="#"><i class="bi bi-x-square-fill btnEliminarCarro" id="remove-${producto.id}" ></i></a><br>`;
 
 		containerList.appendChild(itemCarro);
 
@@ -61,12 +63,18 @@ export const mostrarCarro = () => {
 	total.setAttribute("id", `total`);
 	total.className = `d-flex flex-column`
 	total.innerHTML = `<p>Total: $${costoTotal}</p>
-						<a id="comprarBtn" class="btn btn-success">Comprar ahora!</a>`;
+            <div class="d-flex flex-row justify-content-center">
+						<a id="comprarBtn" class="btn btn-success">Comprar ahora!</a>
+            <a id="vaciarCarroBtn" class="btn btn-danger">Vaciar Carro</a>
+            </div>`;
 	
 	containerList.appendChild(total);
 	
 	const comprarBtn = document.querySelector("#comprarBtn");
 	comprarBtn.addEventListener('click', calcularCuotas);
+
+  const vaciarCarroBtn = document.getElementById(`vaciarCarroBtn`);
+  vaciarCarroBtn.addEventListener(`click`, vaciarCarro); 
 }
 
 // Funcion para mostrar la cantidad de elementos del carro en el HTML
@@ -74,6 +82,14 @@ const cantidadCarroFuncion = () => {
   const cantidadCarroTexto = document.getElementById(`cantidadCarro`);
   let cantidadCarro = arrayCarro.length;
   cantidadCarroTexto.innerHTML = `(${cantidadCarro})`;
+}
+
+// Funcion para vaciar el carro:
+const vaciarCarro = () => {
+  arrayCarro = [];
+
+  guardarCarro();
+  mostrarCarro();
 }
 
 // Funcion para calcular el monto de las cuotas
