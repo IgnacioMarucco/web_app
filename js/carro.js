@@ -50,9 +50,10 @@ export const mostrarCarro = () => {
 		let itemCarro = document.createElement(`div`);
 
 		itemCarro.className = `d-flex flex-row justify-content-between`;
-		itemCarro.innerHTML = `<p>${producto.nombre}</p>
-                        <p>$${producto.precio} c/u</p><p>Cantidad: ${producto.cantidad}</p>
-                        <a  href="#"><i class="bi bi-x-square-fill btnEliminarCarro" id="remove-${producto.id}" ></i></a><br>`;
+		itemCarro.innerHTML = `<p>${producto.nombre}</p><p>$${producto.precio} c/u</p><p>Cantidad: ${producto.cantidad}</p>
+                        <a  href="#">
+                          <i class="bi bi-x-square-fill btnEliminarCarro" id="remove-${producto.id}" ></i>
+                        </a><br>`;
 
 		containerList.appendChild(itemCarro);
 
@@ -63,10 +64,10 @@ export const mostrarCarro = () => {
 	total.setAttribute("id", `total`);
 	total.className = `d-flex flex-column`
 	total.innerHTML = `<p>Total: $${costoTotal}</p>
-            <div class="d-flex flex-row justify-content-center">
-						<a id="comprarBtn" class="btn btn-success">Comprar ahora!</a>
-            <a id="vaciarCarroBtn" class="btn btn-danger">Vaciar Carro</a>
-            </div>`;
+                    <div class="d-flex flex-row justify-content-center">
+                      <a id="comprarBtn" class="btn btn-success">Comprar ahora!</a>
+                      <a id="vaciarCarroBtn" class="btn btn-danger">Vaciar Carro</a>
+                    </div>`;
 	
 	containerList.appendChild(total);
 	
