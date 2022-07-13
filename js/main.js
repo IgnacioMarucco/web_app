@@ -3,26 +3,6 @@ import {arrayProductos} from './productos.js';
 import { agregarCarro, mostrarCarro,existeCarro } from './carro.js';
 import {arrayDatos, registro, login} from './login.js';
 
-
-// // Funcion para obtener los formatos de cada producto
-// const mostrarFormatos = (id) => {
-// 	const formatoTexto = document.createElement(`div`);
-// 	formatoTexto.innerHTML = `Formatos: <br>`;
-// 	const producto = arrayProductos.find((producto) => producto.id == id);
-// 	console.log(`producto ${id}`,producto);
-
-// 	// console.log(producto);
-// 	const productoFormatos = producto.formatos;
-// 	// console.log(productoFormatos);
-// 	productoFormatos.forEach((formato) => {
-// 		// console.log(formato[0]);
-// 		// console.log(formato[1]);
-// 		formatoTexto.innerHTML += `<span><label for="${formato[1]}">${formato[0]} gr Precio: $${formato[1]}</label><input type="radio" name="precioProducto${producto.id}" value="${formato[1]}"><span>`;
-// 	});
-// 	// console.log(formatoTexto)
-// 	return formatoTexto;
-// }
-
 // Mostrar grid de productos en el HTML manipulando el DOM:
 const mostrarProductos = () => {
 	let gridProductos = document.getElementById(`grid-productos`);
@@ -37,15 +17,12 @@ const mostrarProductos = () => {
 		let containerCard = document.createElement(`div`);
 		containerCard.className = `col`;
 
-		// let formatos = mostrarFormatos(producto.id);
-		// console.log(`prueba`, formatos)
 
 		containerCard.innerHTML = 
       `<div class="card align-items-center">
       <h4 class="card-title">${producto.nombre}</h4>
       <img class="card-img-top" src="../public/img_prod/${producto.id}.webp" alt="Imagen de ${producto.nombre}">
       <h6>$${producto.precio}</h6>
-      <!--- {formatos.innerHTML} -->
       <a id="${producto.id}" class="btn btn-primary btnAgregarCarro">Agregar al carro</a>
       <div>`;
 		gridProductos.appendChild(containerCard);
