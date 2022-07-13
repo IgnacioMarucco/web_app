@@ -30,7 +30,12 @@ export const login = (e) => {
     } else if (usuario.passwordReg === passwordLogin){
         const nombreLogueado = document.getElementById(`nombreLogueado`);
         nombreLogueado.innerHTML = `${usuario.nombreReg}`;
+        
+        const loginBtn = document.getElementById(`loginBtn`);
+        loginBtn.style.display = `none`;
+        
         console.log(nombreLogueado.innerHTML);
+
     }else {
         console.log(`Contraseña incorrecta.`);
     }
