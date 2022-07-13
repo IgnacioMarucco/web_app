@@ -5,7 +5,7 @@ import {arrayDatos, registro, login} from './login.js';
 
 
 // // Funcion para obtener los formatos de cada producto
-// const mostrarFormatos2 = (id) => {
+// const mostrarFormatos = (id) => {
 // 	const formatoTexto = document.createElement(`div`);
 // 	formatoTexto.innerHTML = `Formatos: <br>`;
 // 	const producto = arrayProductos.find((producto) => producto.id == id);
@@ -37,7 +37,7 @@ const mostrarProductos = () => {
 		let containerCard = document.createElement(`div`);
 		containerCard.className = `col`;
 
-		// let formatos = mostrarFormatos2(producto.id);
+		// let formatos = mostrarFormatos(producto.id);
 		// console.log(`prueba`, formatos)
 
 		containerCard.innerHTML = 
@@ -73,16 +73,3 @@ const filtrarProductos = () => {
 window.onload = mostrarProductos();
 
 window.onload = existeCarro();
-
-
-
-// Funcion para mostrar los formatos disponibles de cada producto en cada card:
-// const mostrarFormatos = () => {
-// 	// arrayProductos.forEach((producto)=> console.log(producto));
-// 	arrayProductos.forEach((producto) => {
-// 		producto.formatos.forEach((formato)=> {
-// 			console.log(formato);
-// 		})
-// 	})
-// }
-// mostrarFormatos();
