@@ -1,4 +1,4 @@
-export const arrayDatos = [];
+export const arrayDatos = [{nombreReg: "Ignacio", telefonoReg: "12345", emailReg: "ignacio@mail.com", passwordReg: "1234"}];
 
 // Funcion registro
 export const registro = (e) => {
@@ -14,36 +14,25 @@ export const registro = (e) => {
         emailReg,
         passwordReg
     }
-
-    const datosRegistroJSON = JSON.stringify(datosRegistro);
-    
-    localStorage.setItem(`datosRegistro`, datosRegistroJSON);
     arrayDatos.push(datosRegistro);
-    const arrayDatosJSON = JSON.stringify(arrayDatos);
-    localStorage.setItem(`arrayDatos`, arrayDatosJSON);
 }
-
 
 // Funcion login
 export const login = (e) => {
     e.preventDefault(); 
-
     const emailLogin = document.getElementById(`emailLogin`).value;
     const passwordLogin = document.getElementById(`passwordLogin`).value;
 
-    const datosRegistro = JSON.parse(localStorage.getItem(`arrayDatos`));
-    console.log(datosRegistro);
-
-    let usuario = datosRegistro.find((usuarioRegistrado) => usuarioRegistrado.emailReg == emailLogin);
+    let usuario = arrayDatos.find((usuarioRegistrado) => usuarioRegistrado.emailReg === emailLogin);
     console.log(usuario)
     if(!usuario){
-        console.log(`Datos ingresados incorrectos.`);
-    } else if (usuario.passwordReg == passwordLogin){
+        console.log(`El usuario no existe.`);
+    } else if (usuario.passwordReg === passwordLogin){
         const nombreLogueado = document.getElementById(`nombreLogueado`);
         nombreLogueado.innerHTML = `${usuario.nombreReg}`;
         console.log(nombreLogueado.innerHTML);
     }else {
-        console.log(`Datos ingresados incorrectos.`);
+        console.log(`Contraseña incorrecta.`);
     }
 }
 
