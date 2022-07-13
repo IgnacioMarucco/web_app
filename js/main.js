@@ -26,6 +26,7 @@ import {arrayDatos, registro, login} from './login.js';
 // Mostrar grid de productos en el HTML manipulando el DOM:
 const mostrarProductos = () => {
 	let gridProductos = document.getElementById(`grid-productos`);
+  // reseteo el contenido, para limpiarlo cada vez que filtro los productos a mostrar.
 	gridProductos.innerHTML = ``;
 
 	// Le agrego un filtro de productos
@@ -39,13 +40,14 @@ const mostrarProductos = () => {
 		// let formatos = mostrarFormatos2(producto.id);
 		// console.log(`prueba`, formatos)
 
-		containerCard.innerHTML = `<div class="card align-items-center">
-									<h4 class="card-title">${producto.nombre}</h4>
-									<img class="card-img-top" src="../public/img_prod/${producto.id}.webp" alt="Imagen de ${producto.nombre}">
-									<h6>$${producto.precio}</h6>
-									<!--- {formatos.innerHTML} -->
-									<a id="${producto.id}" class="btn btn-primary btnAgregarCarro">Agregar al carro</a>
-									<div>`;
+		containerCard.innerHTML = 
+      `<div class="card align-items-center">
+      <h4 class="card-title">${producto.nombre}</h4>
+      <img class="card-img-top" src="../public/img_prod/${producto.id}.webp" alt="Imagen de ${producto.nombre}">
+      <h6>$${producto.precio}</h6>
+      <!--- {formatos.innerHTML} -->
+      <a id="${producto.id}" class="btn btn-primary btnAgregarCarro">Agregar al carro</a>
+      <div>`;
 		gridProductos.appendChild(containerCard);
 	}
 
@@ -56,7 +58,6 @@ const mostrarProductos = () => {
 	// Agrego el event listener a cada boton (que tienen id unico), para pushear el producto comprado al arrayCarro
 	const cardBtn = document.querySelectorAll(".btnAgregarCarro");
 	cardBtn.forEach((boton) => boton.addEventListener("click", agregarCarro));
-	// cardBtn.forEach((boton) => boton.addEventListener("click", mostrarCarro));
 }
 
 // Funcion para filtrar los productos a mostrar:
