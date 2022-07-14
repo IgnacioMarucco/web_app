@@ -20,8 +20,8 @@ const errorPasswordReg = document.getElementById(`errorPasswordReg`);
 const errorEmailLogin = document.getElementById(`errorEmailLogin`);
 
 // Funcion registro
-export const registro = (e) => {
-  e.preventDefault();
+export const registro = (event) => {
+  event.preventDefault();
 
   const datosRegistro = {
     nombreReg: nombreReg.value,
@@ -33,8 +33,8 @@ export const registro = (e) => {
 }
 
 // Funcion login
-export const login = (e) => {
-  e.preventDefault();
+export const login = (event) => {
+  event.preventDefault();
 
   // Encontrar el usuario en la base de datos (arrayDatos) a partir de los datos ingresados.
   let usuario = arrayDatos.find((usuarioRegistrado) => usuarioRegistrado.emailReg === emailLogin.value);

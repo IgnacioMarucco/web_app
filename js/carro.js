@@ -20,13 +20,50 @@ const guardarCarro = () => {
 // Funcion para agregar al array del carro los productos elegidos por el usuario
 export const agregarCarro = (event) => {
 	let identificador = Number(event.target.id);
+
+  // Este es el producto que voy a modificar la cantidad en el array de arrays con formatos
+  let producto = arrayProductos.find((element) => element.id == identificador);
+
+  // obtengo el formato elegido del producto elegido por el usuario. Utilizo el valor elegido por el usuario, que es un index. Si utilizara como value el precio, podria tener dos formatos con el mismo precio.
+  let formatoElegido = document.querySelector(`input[name="precioProducto${producto.id}"]:checked`).value;
+  // console.log(formatoElegido);
+
+  // este es el precio elegido
+  // let peso = producto.formatos[formatoElegido][0];
+  // let precio = producto.formatos[formatoElegido][1];
+  let cantidad = producto.formatos[formatoElegido][2];
+  console.log(peso, precio, cantidad)
+
+  //Modifico la cantidad (el tercer elemento de cada array en el array de arrays con los formatos) Busco coincidencia entre el precio elegido por el usuario, con la segunda posicion en cada array. (los precios son unicos en cada producto)
+
+  // console.log(arrayProductos)
+  // producto.calcularCosto();
+
+  // Modificar la cantidad, codigo viejo (creo)
 	if (!(arrayCarro.some((element) => element.id == identificador))){
-		arrayCarro.push(arrayProductos.find((element) => element.id == identificador));
-		arrayCarro.find((element) => element.id == identificador).cantidad = 1;
+		// arrayCarro.push(arrayProductos.find((element) => element.id == identificador));
+
+    arrayCarro.push(producto);
+    arrayCarro[arrayCarro.length-1].formatos[formatoElegido][2] = 1;
+    
+    // console.log(arrayCarro[length-1]);
+    
+		// arrayCarro.find((element) => element.id == identificador).cantidad = 1;
+    // arrayCarro.find((element) => element.id == identificador).precio = precio;
 	} else {
-		arrayCarro.find((element)=> element.id == identificador).cantidad += 1;
+		arrayCarro.find((element)=> element.id == identificador).formatos[formatoElegido][2] += 1;
 	}
+
+  // Modificar la cantidad, codigo viejo (creo)
+	// if (!(arrayCarro.some((element) => element.id == identificador))){
+	// 	arrayCarro.push(arrayProductos.find((element) => element.id == identificador));
+	// 	arrayCarro.find((element) => element.id == identificador).cantidad = 1;
+  //   arrayCarro.find((element) => element.id == identificador).precio = precio;
+	// } else {
+	// 	arrayCarro.find((element)=> element.id == identificador).cantidad += 1;
+	// }
 	
+  console.log(arrayCarro)
 	guardarCarro();
 	mostrarCarro();
 }
