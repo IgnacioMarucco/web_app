@@ -1,6 +1,6 @@
 //Segunda entrega de proyecto final: JSON + Storage + DOM + Eventos
 import {arrayProductos} from './productos.js';
-import { agregarCarro, mostrarCarro, existeCarro } from './carro.js';
+import { agregarAlCarro, mostrarCarro, existeCarro } from './carro.js';
 import {arrayDatos, registro, login} from './login.js';
 
 
@@ -74,7 +74,7 @@ const mostrarProductos = () => {
 
 	// Agrego el event listener a cada boton (que tienen id unico), para pushear el producto comprado al arrayCarro
 	const modalAgregarAlCarroBtn = document.querySelectorAll(".btnAgregarAlCarro");
-	modalAgregarAlCarroBtn.forEach((boton) => boton.addEventListener("click", agregarCarro));
+	modalAgregarAlCarroBtn.forEach((boton) => boton.addEventListener("click", agregarAlCarro));
 }
 
 // Funcion para filtrar los productos a mostrar:

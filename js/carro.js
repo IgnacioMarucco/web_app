@@ -16,7 +16,7 @@ const guardarCarro = () => {
 }
 
 // Funcion agregar al carro el producto elegido por el usuario. 
-export const agregarCarro = (event) => {
+export const agregarAlCarro = (event) => {
   let identificador = Number(event.target.id);
   // Este es el producto que voy a pushear al arrayCarro y modificar su cantidad.
   let producto = arrayProductos.find((element) => element.id == identificador);
@@ -37,7 +37,7 @@ export const agregarCarro = (event) => {
 }
 
 // Funcion para eliminar elementos del carro
-export const eliminarCarro = (event) => {
+export const eliminarDelCarro = (event) => {
   const identificadores = event.target.id.split('-');
 
   const [identificadorProducto, identificadorFormato] = identificadores;
@@ -78,9 +78,8 @@ export const mostrarCarro = () => {
       let itemCarro = document.createElement(`div`);
       itemCarro.className = `d-flex flex-row justify-content-between`;  
       if (formato.cantidad > 0) {
-        const peso = formato.peso;
-        const precio = formato.precio;
-        const cantidad = formato.cantidad;
+        // Desestructuracion objeto formato
+        const {peso, precio, cantidad } = formato;
         itemCarro.innerHTML += 
           `<p>${producto.nombre}</p><p>${peso} gramos</p><p>$${precio} c/u</p><p>Cantidad: ${cantidad}</p>
           <a  href="#">
@@ -92,7 +91,7 @@ export const mostrarCarro = () => {
     }
 
 		const eliminarBtn = document.querySelectorAll(".btnEliminarCarro");
-		eliminarBtn.forEach((boton) => boton.addEventListener("click", eliminarCarro));
+		eliminarBtn.forEach((boton) => boton.addEventListener("click", eliminarDelCarro));
 	}
 
 
@@ -128,8 +127,6 @@ const cantidadCarroFuncion = () => {
   arrayCarro.forEach((producto) => {
     cantidadProductos += producto?.formatos.reduce((acumulador,formato) => acumulador + Number(formato.cantidad), 0)
   })
-  console.log(arrayCarro)
-  console.log(cantidadProductos)
   cantidadCarroTexto.innerHTML = `(${cantidadProductos})`;
 }
 
