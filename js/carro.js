@@ -5,11 +5,8 @@ let arrayCarro = [];
 
 // Funcion para verificar si existe ya un carrito de compras, si es asi, tomar sus valores.
 export const existeCarro = () => {
-	let arrayCarroLS = JSON.parse(localStorage.getItem(`arrayCarro`));
-	if(arrayCarroLS) {
-		arrayCarro = arrayCarroLS;
-		mostrarCarro();
-	}
+  arrayCarro = JSON.parse(localStorage.getItem(`arrayCarro`)) || [];
+  mostrarCarro();
 }
 
 // Funcion para guardar el carro en local storage
@@ -42,36 +39,30 @@ export const agregarCarro = (event) => {
 // Funcion para eliminar elementos del carro
 export const eliminarCarro = (event) => {
   const identificadores = event.target.id.split('-');
-  // console.log(identificadores);
-  
+
   const [identificadorProducto, identificadorFormato] = identificadores;
-  // console.log(identificadorProducto);
-  // console.log(identificadorFormato);
 
   // Identifico el producto a eliminar (no su formato)
   let productoAEliminar = arrayCarro.find((producto) => producto.id === Number(identificadorProducto));
-  // console.log(productoAEliminar)
+
   // Identifico el formato del producto a eliminar.
   const formatoAEliminar = productoAEliminar.formatos.find((formato) => formato.id === Number(identificadorFormato));
-  // console.log(formatoAEliminar)
 
-  // Modifico la cantidad a 0
+  // Modifico la cantidad a 0 DE ESE FORMATO en particular
   formatoAEliminar.cantidad = 0;
 
-  // console.log(arrayCarro)
   // Itero sobre los formatos de cada producto, si todas las cantidades son 0, lo elimino al producto del array
   let cantidadDelMismoProducto = 0;
   for (const formato of productoAEliminar.formatos) {
-    console.log(formato);
-    
     cantidadDelMismoProducto += formato.cantidad;
-    // console.log(cantidadDelMismoProducto);
+  }
 
+  // Eliminar el producto:
+  const eliminarProducto = () => {
+    arrayCarro = arrayCarro.filter((producto) => producto.id != Number(identificadorProducto));
+    return arrayCarro;
   }
-  if (cantidadDelMismoProducto === 0) {
-  arrayCarro = arrayCarro.filter((producto) => producto.id != Number(identificadorProducto));
-  }
-  // console.log(arrayCarro)
+  cantidadDelMismoProducto === 0 && eliminarProducto();
 
 	guardarCarro();
 	mostrarCarro();
@@ -165,7 +156,7 @@ export const costoTotalFuncion = () => {
   let costoTotal = 0; 
 
   arrayCarro.forEach((producto) => {
-    costoTotal += producto.formatos.reduce((acumulador,formato) => acumulador + Number(formato.precio) * Number(formato.cantidad), 0)
+    costoTotal += producto?.formatos.reduce((acumulador,formato) => acumulador + Number(formato.precio) * Number(formato.cantidad), 0)
   })
   return costoTotal;
 
