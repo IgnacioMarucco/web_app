@@ -40,9 +40,9 @@ footer {
     background-color: map-get($colors, primary);
     min-width: 250px;
 
-    &:hover{
-        transform: scale(1.05);
-    }
+    // &:hover{
+    //     transform: scale(1.05);
+    // }
     .card-img-top {
         @include size (200px, 200px);
     }
