@@ -26,11 +26,20 @@ export const agregarAlCarro = (event) => {
   // Modificar la cantidad: si no existe, pushearlo y agregar una unidad. Si ya existe solo agregarle una unidad.
 	if (!(arrayCarro.some((element) => element.id == identificador))){
     arrayCarro.push(producto);
-    arrayCarro[arrayCarro.length - 1].formatos[formatoElegido].cantidad++;
+    arrayCarro[arrayCarro.length - 1].formatos[formatoElegido].cantidad = 1;
 	} else {
     arrayCarro.find((element)=> element.id == identificador).formatos[formatoElegido].cantidad++;
 	}
-  
+  // Notificacion:
+  Toastify({
+      text: `Agregaste ${producto.nombre} al carro.`,
+      duration: 3500,
+      gravity: 'bottom',
+      style: {
+        color: '#000',
+        background: '#fcab31',
+      }
+    }).showToast();
 
   guardarCarro();
   mostrarCarro();
@@ -102,18 +111,25 @@ export const mostrarCarro = () => {
 
   let costoTotal = costoTotalFuncion();
 	let total = document.createElement(`div`);
+  let botonesCarro = document.createElement(`div`);
+  botonesCarro.className = `d-flex flex-row justify-content-center`
+  botonesCarro.innerHTML = 
+  `<a id="comprarBtn" class="btn btn-success">Continuar Compra</a>
+  <a id="vaciarCarroBtn" class="btn btn-danger">Vaciar Carro</a>`;
 	total.setAttribute("id", `total`);
 	total.className = `d-flex flex-column`
-	total.innerHTML = `<p>Total: $${costoTotal}</p>
-                    <div class="d-flex flex-row justify-content-center">
-                      <a id="comprarBtn" class="btn btn-success">Comprar ahora!</a>
-                      <a id="vaciarCarroBtn" class="btn btn-danger">Vaciar Carro</a>
-                    </div>`;
+	total.innerHTML =
+  `<p>Total: $${costoTotal}</p>`;
 	
 	containerList.appendChild(total);
+  containerList.appendChild(botonesCarro);
+
+  // Ocultar  botones si no hay productos en el  carro:
+  arrayCarro.length === 0 && botonesCarro.setAttribute('style', 'display:none !important');
 	
 	const comprarBtn = document.querySelector("#comprarBtn");
 	comprarBtn.addEventListener('click', calcularCuotas);
+  comprarBtn.addEventListener('click', () => {localStorage.clear()})
 
   const vaciarCarroBtn = document.getElementById(`vaciarCarroBtn`);
   vaciarCarroBtn.addEventListener(`click`, vaciarCarro); 
@@ -133,7 +149,7 @@ const cantidadCarroFuncion = () => {
 // Funcion para vaciar el carro:
 const vaciarCarro = () => {
   arrayCarro = [];
-
+  console.log(arrayCarro);
   guardarCarro();
   mostrarCarro();
 }
