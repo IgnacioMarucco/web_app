@@ -12,66 +12,66 @@ export const existeCarro = () => {
 	}
 }
 
+// Funcion para guardar el carro en local storage
 const guardarCarro = () => {
 	let arrayCarroJSON = JSON.stringify(arrayCarro);
 	localStorage.setItem(`arrayCarro`, arrayCarroJSON);
 }
 
-// Funcion para agregar al array del carro los productos elegidos por el usuario
+// Funcion agregar al carro el producto elegido por el usuario. 
 export const agregarCarro = (event) => {
-	let identificador = Number(event.target.id);
-
-  // Este es el producto que voy a modificar la cantidad en el array de arrays con formatos
+  let identificador = Number(event.target.id);
+  // Este es el producto que voy a pushear al arrayCarro y modificar su cantidad.
   let producto = arrayProductos.find((element) => element.id == identificador);
 
-  // obtengo el formato elegido del producto elegido por el usuario. Utilizo el valor elegido por el usuario, que es un index. Si utilizara como value el precio, podria tener dos formatos con el mismo precio.
+  // obtengo el formato elegido del producto elegido por el usuario. Si utilizara como value el precio, podria tener dos formatos con el mismo precio, por eso tengo un id unico para cada formato. (formato.id) en la funcion mostrarFormatos.
   let formatoElegido = document.querySelector(`input[name="precioProducto${producto.id}"]:checked`).value;
-  // console.log(formatoElegido);
-
-  // este es el precio elegido
-  // let peso = producto.formatos[formatoElegido][0];
-  // let precio = producto.formatos[formatoElegido][1];
-  let cantidad = producto.formatos[formatoElegido][2];
-  console.log(peso, precio, cantidad)
-
-  //Modifico la cantidad (el tercer elemento de cada array en el array de arrays con los formatos) Busco coincidencia entre el precio elegido por el usuario, con la segunda posicion en cada array. (los precios son unicos en cada producto)
-
-  // console.log(arrayProductos)
-  // producto.calcularCosto();
-
-  // Modificar la cantidad, codigo viejo (creo)
+  // Modificar la cantidad: si no existe, pushearlo y agregar una unidad. Si ya existe solo agregarle una unidad.
 	if (!(arrayCarro.some((element) => element.id == identificador))){
-		// arrayCarro.push(arrayProductos.find((element) => element.id == identificador));
-
     arrayCarro.push(producto);
-    arrayCarro[arrayCarro.length-1].formatos[formatoElegido][2] = 1;
-    
-    // console.log(arrayCarro[length-1]);
-    
-		// arrayCarro.find((element) => element.id == identificador).cantidad = 1;
-    // arrayCarro.find((element) => element.id == identificador).precio = precio;
+    arrayCarro[arrayCarro.length - 1].formatos[formatoElegido].cantidad++;
 	} else {
-		arrayCarro.find((element)=> element.id == identificador).formatos[formatoElegido][2] += 1;
+    arrayCarro.find((element)=> element.id == identificador).formatos[formatoElegido].cantidad++;
 	}
+  
 
-  // Modificar la cantidad, codigo viejo (creo)
-	// if (!(arrayCarro.some((element) => element.id == identificador))){
-	// 	arrayCarro.push(arrayProductos.find((element) => element.id == identificador));
-	// 	arrayCarro.find((element) => element.id == identificador).cantidad = 1;
-  //   arrayCarro.find((element) => element.id == identificador).precio = precio;
-	// } else {
-	// 	arrayCarro.find((element)=> element.id == identificador).cantidad += 1;
-	// }
-	
-  console.log(arrayCarro)
-	guardarCarro();
-	mostrarCarro();
+  guardarCarro();
+  mostrarCarro();
 }
 
 // Funcion para eliminar elementos del carro
 export const eliminarCarro = (event) => {
-	let identificador = Number(event.target.id.slice(7));
-	arrayCarro = arrayCarro.filter((element) => element.id != identificador);
+  const identificadores = event.target.id.split('-');
+  // console.log(identificadores);
+  
+  const [identificadorProducto, identificadorFormato] = identificadores;
+  // console.log(identificadorProducto);
+  // console.log(identificadorFormato);
+
+  // Identifico el producto a eliminar (no su formato)
+  let productoAEliminar = arrayCarro.find((producto) => producto.id === Number(identificadorProducto));
+  // console.log(productoAEliminar)
+  // Identifico el formato del producto a eliminar.
+  const formatoAEliminar = productoAEliminar.formatos.find((formato) => formato.id === Number(identificadorFormato));
+  // console.log(formatoAEliminar)
+
+  // Modifico la cantidad a 0
+  formatoAEliminar.cantidad = 0;
+
+  // console.log(arrayCarro)
+  // Itero sobre los formatos de cada producto, si todas las cantidades son 0, lo elimino al producto del array
+  let cantidadDelMismoProducto = 0;
+  for (const formato of productoAEliminar.formatos) {
+    console.log(formato);
+    
+    cantidadDelMismoProducto += formato.cantidad;
+    // console.log(cantidadDelMismoProducto);
+
+  }
+  if (cantidadDelMismoProducto === 0) {
+  arrayCarro = arrayCarro.filter((producto) => producto.id != Number(identificadorProducto));
+  }
+  // console.log(arrayCarro)
 
 	guardarCarro();
 	mostrarCarro();
@@ -79,24 +79,38 @@ export const eliminarCarro = (event) => {
 
 // Funcion para mostrar en HTML el carro de compras 
 export const mostrarCarro = () => {
-	let costoTotal = costoTotalFuncion();
 	let containerList = document.getElementById(`lista-carro`);
 	containerList.innerHTML = ``;
   cantidadCarroFuncion();
 	for (const producto of arrayCarro) {
-		let itemCarro = document.createElement(`div`);
+    for (const formato of producto.formatos) {
+      let itemCarro = document.createElement(`div`);
+      itemCarro.className = `d-flex flex-row justify-content-between`;  
+      if (formato.cantidad > 0) {
+        const peso = formato.peso;
+        const precio = formato.precio;
+        const cantidad = formato.cantidad;
+        itemCarro.innerHTML += 
+          `<p>${producto.nombre}</p><p>${peso} gramos</p><p>$${precio} c/u</p><p>Cantidad: ${cantidad}</p>
+          <a  href="#">
+            <i class="bi bi-x-square-fill btnEliminarCarro" id="${producto.id}-${formato.id}" ></i>
+          </a><br>`;
 
-		itemCarro.className = `d-flex flex-row justify-content-between`;
-		itemCarro.innerHTML = `<p>${producto.nombre}</p><p>$${producto.precio} c/u</p><p>Cantidad: ${producto.cantidad}</p>
-                        <a  href="#">
-                          <i class="bi bi-x-square-fill btnEliminarCarro" id="remove-${producto.id}" ></i>
-                        </a><br>`;
-
-		containerList.appendChild(itemCarro);
+        containerList.appendChild(itemCarro);
+      }
+    }
 
 		const eliminarBtn = document.querySelectorAll(".btnEliminarCarro");
 		eliminarBtn.forEach((boton) => boton.addEventListener("click", eliminarCarro));
 	}
+
+
+  // Mostrar el total a pagar:
+
+
+
+
+  let costoTotal = costoTotalFuncion();
 	let total = document.createElement(`div`);
 	total.setAttribute("id", `total`);
 	total.className = `d-flex flex-column`
@@ -148,6 +162,11 @@ const calcularCuotas = () => {
 
 // Funcion para calcular el costo total al usuario:
 export const costoTotalFuncion = () => {
-	let costoTotal = arrayCarro.reduce((acumulador, elemento) => acumulador + elemento.precio * elemento.cantidad, 0);
+  let costoTotal = 0; 
+
+  arrayCarro.forEach((producto) => {
+    costoTotal += producto.formatos.reduce((acumulador,formato) => acumulador + Number(formato.precio) * Number(formato.cantidad), 0)
+  })
   return costoTotal;
+
 }
