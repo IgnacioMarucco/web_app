@@ -1,7 +1,24 @@
 //Segunda entrega de proyecto final: JSON + Storage + DOM + Eventos
 import {arrayProductos} from './productos.js';
-import { agregarCarro, mostrarCarro,existeCarro } from './carro.js';
+import { agregarCarro, mostrarCarro, existeCarro } from './carro.js';
 import {arrayDatos, registro, login} from './login.js';
+
+
+// Funcion para obtener los formatos de cada producto
+const mostrarFormatos = (id) => {
+  const producto = arrayProductos.find((producto) => producto.id == id);
+
+  const formatosTexto = document.createElement(`div`);
+	formatosTexto.innerHTML = `Formatos: <br>`;
+	
+  const productoFormatos = producto.formatos;
+  
+  productoFormatos.forEach((formato) => {
+		formatosTexto.innerHTML += `<label for="${formato.peso}">${formato.peso} gr Precio: $${formato.precio}</label><input type="radio" name="precioProducto${producto.id}" value="${formato.id}" checked="checked"><br>`;
+  })
+
+	return formatosTexto;
+}
 
 // Mostrar grid de productos en el HTML manipulando el DOM:
 const mostrarProductos = () => {
@@ -18,12 +35,35 @@ const mostrarProductos = () => {
 		containerCard.className = `col`;
 
 
+		let formatos = mostrarFormatos(producto.id);
+
 		containerCard.innerHTML = 
       `<div class="card align-items-center">
       <h4 class="card-title">${producto.nombre}</h4>
       <img class="card-img-top" src="../public/img_prod/${producto.id}.webp" alt="Imagen de ${producto.nombre}">
-      <h6>$${producto.precio}</h6>
-      <a id="${producto.id}" class="btn btn-primary btnAgregarCarro">Agregar al carro</a>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDetalles${producto.id}">Ver Detalles</button>
+
+      <div class="modal fade" id="modalDetalles${producto.id}" tabindex="-1" aria-labelledby="modalLabel${producto.id}" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel${producto.id}">${producto.nombre}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <img src="../public/img_prod/${producto.id}.webp" alt="Imagen de ${producto.nombre}">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus sapiente, eos labore, ullam illo similique beatae ab necessitatibus reiciendis ipsum nemo libero consequuntur. Cumque assumenda ab iusto temporibus nam ipsa.</p>
+              ${formatos.innerHTML}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="button"  id="${producto.id}" class="btn btn-primary btnAgregarAlCarro">Agregar al Carro</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
       <div>`;
 		gridProductos.appendChild(containerCard);
 	}
@@ -33,8 +73,8 @@ const mostrarProductos = () => {
 	}
 
 	// Agrego el event listener a cada boton (que tienen id unico), para pushear el producto comprado al arrayCarro
-	const cardBtn = document.querySelectorAll(".btnAgregarCarro");
-	cardBtn.forEach((boton) => boton.addEventListener("click", agregarCarro));
+	const modalAgregarAlCarroBtn = document.querySelectorAll(".btnAgregarAlCarro");
+	modalAgregarAlCarroBtn.forEach((boton) => boton.addEventListener("click", agregarCarro));
 }
 
 // Funcion para filtrar los productos a mostrar:

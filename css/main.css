@@ -174,8 +174,6 @@ footer {
 .card {
   background-color: #fcab31;
   min-width: 250px; }
-  .card:hover {
-    transform: scale(1.05); }
   .card .card-img-top {
     width: 200px;
     height: 200px; }
