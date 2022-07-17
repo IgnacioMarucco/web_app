@@ -123,8 +123,14 @@ export const mostrarCarro = () => {
 // Funcion para mostrar la cantidad de elementos del carro en el HTML
 const cantidadCarroFuncion = () => {
   const cantidadCarroTexto = document.getElementById(`cantidadCarro`);
-  let cantidadCarro = arrayCarro.length;
-  cantidadCarroTexto.innerHTML = `(${cantidadCarro})`;
+  
+  let cantidadProductos = 0;
+  arrayCarro.forEach((producto) => {
+    cantidadProductos += producto?.formatos.reduce((acumulador,formato) => acumulador + Number(formato.cantidad), 0)
+  })
+  console.log(arrayCarro)
+  console.log(cantidadProductos)
+  cantidadCarroTexto.innerHTML = `(${cantidadProductos})`;
 }
 
 // Funcion para vaciar el carro:
