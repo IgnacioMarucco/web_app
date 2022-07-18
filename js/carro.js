@@ -162,8 +162,8 @@ export const costoTotalFuncion = () => {
 
 // Funcion Para mostrar los medios de pago, cuotas, direccion.
 function definirCuotas() {
-  let cuotasDOM = document.getElementById(`cuotas`);
-  cuotasDOM.innerHTML = 
+  let cuotasTexto = document.getElementById(`cuotas`);
+  cuotasTexto.innerHTML = 
   `<fieldset>
     <legend>Elegi en cuantas cuotas deseas realizar el pago:</legend>
 
@@ -208,7 +208,8 @@ function definirCuotas() {
           'Gracias por confiar en nosotros.',
           'success'
         );
-        cuotasDOM.innerHTML = ``;
+
+        cuotasTexto.innerHTML = ``;
         localStorage.clear();
         vaciarCarro();
       }
@@ -223,4 +224,3 @@ const calcularCuotas = () => {
   let costoCuota = costoTotal / cantidadCuotas;
   return {costoTotal, cantidadCuotas, costoCuota};
 }
-
