@@ -147,14 +147,19 @@
 
                 <!-- Modal -->
                 <div class="modal fade" id="modalCarro" tabindex="-1" aria-labelledby="modalCarro" aria-hidden="true">
-                  <div class="modal-dialog">
+                  <div class="modal-dialog modal-fullscreen">
                     <div class="modal-content">
                       <div class="modal-header">
                           <h5 class="modal-title" id="modalCarro">Tu Carrito:</h5>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                          <div id="lista-carro" class="d-flex flex-column"></div>
+                          <div id="carro" class="d-flex flex-column">
+
+                          </div>
+                          <div id="cuotas" clas="d-flex flex-column">
+
+                          </div>
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Minimizar</button>
@@ -270,7 +275,8 @@
     </footer>
   </div>
 
-
+    <!-- Sweetalert 2 -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Toastify JS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <!-- Bootstrap JS -->

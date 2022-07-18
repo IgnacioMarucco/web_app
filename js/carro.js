@@ -79,8 +79,9 @@ export const eliminarDelCarro = (event) => {
 
 // Funcion para mostrar en HTML el carro de compras 
 export const mostrarCarro = () => {
-	let containerList = document.getElementById(`lista-carro`);
-	containerList.innerHTML = ``;
+  // Mostrar productos:
+	let carro = document.getElementById(`carro`);
+	carro.innerHTML = ``;
   cantidadCarroFuncion();
 	for (const producto of arrayCarro) {
     for (const formato of producto.formatos) {
@@ -95,7 +96,7 @@ export const mostrarCarro = () => {
             <i class="bi bi-x-square-fill btnEliminarCarro" id="${producto.id}-${formato.id}" ></i>
           </a><br>`;
 
-        containerList.appendChild(itemCarro);
+        carro.appendChild(itemCarro);
       }
     }
 
@@ -105,31 +106,26 @@ export const mostrarCarro = () => {
 
 
   // Mostrar el total a pagar:
-
-
-
-
   let costoTotal = costoTotalFuncion();
-	let total = document.createElement(`div`);
   let botonesCarro = document.createElement(`div`);
+  let total = document.createElement(`div`);
   botonesCarro.className = `d-flex flex-row justify-content-center`
   botonesCarro.innerHTML = 
-  `<a id="comprarBtn" class="btn btn-success">Continuar Compra</a>
+  `<a id="pedirCantidadCuotasBtn" class="btn btn-success">Continuar</a>
   <a id="vaciarCarroBtn" class="btn btn-danger">Vaciar Carro</a>`;
-	total.setAttribute("id", `total`);
-	total.className = `d-flex flex-column`
-	total.innerHTML =
-  `<p>Total: $${costoTotal}</p>`;
+
+	total.innerHTML = `<p>Total: $${costoTotal}</p>`;
 	
-	containerList.appendChild(total);
-  containerList.appendChild(botonesCarro);
+	// carro.appendChild(total);
+  carro.appendChild(botonesCarro);
+  carro.appendChild(total);
 
   // Ocultar  botones si no hay productos en el  carro:
   arrayCarro.length === 0 && botonesCarro.setAttribute('style', 'display:none !important');
 	
-	const comprarBtn = document.querySelector("#comprarBtn");
-	comprarBtn.addEventListener('click', calcularCuotas);
-  comprarBtn.addEventListener('click', () => {localStorage.clear()})
+	const pedirCantidadCuotasBtn = document.querySelector("#pedirCantidadCuotasBtn");
+	pedirCantidadCuotasBtn.addEventListener('click', definirCuotas);
+  pedirCantidadCuotasBtn.addEventListener('click', () => {pedirCantidadCuotasBtn.setAttribute('style', 'display:none !important')});
 
   const vaciarCarroBtn = document.getElementById(`vaciarCarroBtn`);
   vaciarCarroBtn.addEventListener(`click`, vaciarCarro); 
@@ -149,25 +145,8 @@ const cantidadCarroFuncion = () => {
 // Funcion para vaciar el carro:
 const vaciarCarro = () => {
   arrayCarro = [];
-  console.log(arrayCarro);
   guardarCarro();
   mostrarCarro();
-}
-
-// Funcion para calcular el monto de las cuotas
-const calcularCuotas = () => {
-	let costoTotal = costoTotalFuncion();
-	let cantidadCuotas = Number(prompt(`¿En cuantas cuotas desea realizar la compra de $${costoTotal}? (3, 6 o 12 cuotas)`));
-	if (!(cantidadCuotas == 3 || cantidadCuotas == 6 || cantidadCuotas == 12)) {
-		alert(`Ingrese una cantidad de cuotas valida.`);
-		calcularCuotas();
-	} else {
-		let costoCuota = costoTotal / cantidadCuotas;
-		let total = document.getElementById(`total`);
-
-		total.innerHTML = `<p>Total: $${costoTotal}</p>
-                      <p>Tu compra sera en ${cantidadCuotas} cuotas de $${costoCuota.toFixed(2)}</p>`;
-	}
 }
 
 // Funcion para calcular el costo total al usuario:
@@ -180,3 +159,68 @@ export const costoTotalFuncion = () => {
   return costoTotal;
 
 }
+
+// Funcion Para mostrar los medios de pago, cuotas, direccion.
+function definirCuotas() {
+  let cuotasDOM = document.getElementById(`cuotas`);
+  cuotasDOM.innerHTML = 
+  `<fieldset>
+    <legend>Elegi en cuantas cuotas deseas realizar el pago:</legend>
+
+    <div>
+      <input type="radio" id="1" name="cuotas" value="1" checked>
+      <label for="1">Pago Unico</label>
+    </div>
+
+    <div>
+      <input type="radio" id="3-cuotas" name="cuotas" value="3">
+      <label for="3-cuotas">3 Cuotas</label>
+    </div>
+
+    <div>
+      <input type="radio" id="6-cuotas" name="cuotas" value="6">
+      <label for="6-cuotas">6 Cuotas</label>
+    </div>
+
+    <div>
+      <input type="radio" id="12-cuotas" name="cuotas" value="12">
+      <label for="12-cuotas">12 Cuotas</label>
+    </div>
+  </fieldset>
+  <a id="mostrarCuotasBtn" type="submit" class="btn btn-success">Continuar</a>`;
+
+  let mostrarCuotasBtn = document.getElementById(`mostrarCuotasBtn`);
+
+  mostrarCuotasBtn.addEventListener('click', () => {
+    let {costoTotal, cantidadCuotas, costoCuota} = calcularCuotas();
+    Swal.fire({
+      title: '¿Estas seguro que quieres finalizar la compra?',
+      text: `Total: $${costoTotal}. Tu compra sera en ${cantidadCuotas} cuotas de $${costoCuota.toFixed(2)}`,
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Aceptar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Compra Realizada!',
+          'Gracias por confiar en nosotros.',
+          'success'
+        );
+        cuotasDOM.innerHTML = ``;
+        localStorage.clear();
+        vaciarCarro();
+      }
+    })
+  });
+}
+
+// Funcion para calcular el monto de las cuotas
+const calcularCuotas = () => {
+	let costoTotal = costoTotalFuncion();
+	let cantidadCuotas = Number(document.querySelector(`input[name="cuotas"]:checked`).value);
+  let costoCuota = costoTotal / cantidadCuotas;
+  return {costoTotal, cantidadCuotas, costoCuota};
+}
+
