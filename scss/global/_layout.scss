@@ -52,6 +52,7 @@
     }
     .grid-productos {
         grid-area: gridproductos;
+        min-width: 70vw;
     }
     .devoluciones {
         grid-area: devoluciones;

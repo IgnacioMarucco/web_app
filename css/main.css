@@ -125,7 +125,8 @@ p {
   .productos_main .sidebar {
     grid-area: sidebar; }
   .productos_main .grid-productos {
-    grid-area: gridproductos; }
+    grid-area: gridproductos;
+    min-width: 70vw; }
   .productos_main .devoluciones {
     grid-area: devoluciones; }
 
