@@ -38,7 +38,7 @@ const mostrarProductos = () => {
 		let formatos = mostrarFormatos(producto.id);
 
 		containerCard.innerHTML = 
-      `<div class="card align-items-center">
+      `<div class="card align-items-center text-center">
       <h4 class="card-title">${producto.nombre}</h4>
       <img class="card-img-top" src="../public/img_prod/${producto.id}.webp" alt="Imagen de ${producto.nombre}">
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDetalles${producto.id}">Ver Detalles</button>
@@ -52,7 +52,7 @@ const mostrarProductos = () => {
             </div>
             <div class="modal-body">
               <img src="../public/img_prod/${producto.id}.webp" alt="Imagen de ${producto.nombre}">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus sapiente, eos labore, ullam illo similique beatae ab necessitatibus reiciendis ipsum nemo libero consequuntur. Cumque assumenda ab iusto temporibus nam ipsa.</p>
+              <p>${producto.descripcion}</p>
               ${formatos.innerHTML}
             </div>
             <div class="modal-footer">
