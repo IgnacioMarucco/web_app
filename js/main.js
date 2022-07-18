@@ -51,7 +51,7 @@ const mostrarProductos = () => {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <img src="../public/img_prod/${producto.id}.webp" alt="Imagen de ${producto.nombre}">
+                <img src="${rutaImagen}${producto.id}.webp" alt="Imagen de ${producto.nombre}">
                 <p>${producto.descripcion}</p>
                 ${formatos.innerHTML}
               </div>
