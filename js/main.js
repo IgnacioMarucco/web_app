@@ -26,7 +26,7 @@ const mostrarProductos = () => {
 	gridProductos.innerHTML = ``;
 
 	// Elijo que productos motrar
-	let arrayProductosFiltrados = filtrarProductos();
+	let {arrayProductosFiltrados, rutaImagen} = filtrarProductos();
 
 	// Ahora creo las cards de cada producto a partir del array de productos filtrados.
 	for (const producto of arrayProductosFiltrados) {
@@ -40,7 +40,7 @@ const mostrarProductos = () => {
 		containerCard.innerHTML = 
       `<div class="card align-items-center text-center">
         <h4 class="card-title">${producto.nombre}</h4>
-        <img class="card-img-top" src="../public/img_prod/${producto.id}.webp" alt="Imagen de ${producto.nombre}">
+        <img class="card-img-top" src="${rutaImagen}${producto.id}.webp" alt="Imagen de ${producto.nombre}">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDetalles${producto.id}">Ver Detalles</button>
 
         <div class="modal fade" id="modalDetalles${producto.id}" tabindex="-1" aria-labelledby="modalLabel${producto.id}" aria-hidden="true">
@@ -80,6 +80,11 @@ const mostrarProductos = () => {
 
 // Funcion para filtrar los productos a mostrar:
 const filtrarProductos = () => {
+
+
+  //temporario: rutas de imagenes:
+  let rutaImagen = ``;
+
   let arrayProductosFiltrados = [];
 	// Defino el campo de busqueda y le agrego el evento para mostrar los productos buscados. 
 	const buscador = document.getElementById(`buscador`);
@@ -87,10 +92,12 @@ const filtrarProductos = () => {
 	if(buscadorBtn && buscador) {
     buscadorBtn.addEventListener(`click`, mostrarProductos);
     arrayProductosFiltrados = arrayProductos.filter(producto => producto.nombre.toLowerCase().includes(`${buscador.value.toLowerCase()}`));
+    rutaImagen = `../public/img_prod/`;
   } else {
     arrayProductosFiltrados = arrayProductos.filter((producto) => producto.destacado === true);
+    rutaImagen = `./public/img_prod/`;
   }
-	return arrayProductosFiltrados;
+	return {arrayProductosFiltrados, rutaImagen};
 }
 
 window.onload = mostrarProductos();
