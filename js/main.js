@@ -22,11 +22,11 @@ const mostrarFormatos = (id) => {
 
 // Mostrar grid de productos en el HTML manipulando el DOM:
 const mostrarProductos = () => {
-	let gridProductos = document.getElementById(`grid-productos`);
+	let gridProductos = document.getElementById(`grid-productos`) || document.getElementById(`grid-destacados`);
   // reseteo el contenido, para limpiarlo cada vez que filtro los productos a mostrar.
 	gridProductos.innerHTML = ``;
 
-	// Le agrego un filtro de productos
+	// Elijo que productos motrar
 	let arrayProductosFiltrados = filtrarProductos();
 
 	// Ahora creo las cards de cada producto a partir del array de productos filtrados.
@@ -79,11 +79,16 @@ const mostrarProductos = () => {
 
 // Funcion para filtrar los productos a mostrar:
 const filtrarProductos = () => {
-	// Defino el campo de busqueda y le agrego el evento para mostrar los productos buscados.
+  let arrayProductosFiltrados = [];
+	// Defino el campo de busqueda y le agrego el evento para mostrar los productos buscados. 
 	const buscador = document.getElementById(`buscador`);
 	const buscadorBtn = document.getElementById(`buscadorBtn`);
-	buscadorBtn.addEventListener(`click`, mostrarProductos);
-	let arrayProductosFiltrados = arrayProductos.filter(elemento => elemento.nombre.toLowerCase().includes(`${buscador.value.toLowerCase()}`));
+	if(buscadorBtn && buscador) {
+    buscadorBtn.addEventListener(`click`, mostrarProductos);
+    arrayProductosFiltrados = arrayProductos.filter(producto => producto.nombre.toLowerCase().includes(`${buscador.value.toLowerCase()}`));
+  } else {
+    arrayProductosFiltrados = arrayProductos.filter((producto) => producto.destacado === true);
+  }
 	return arrayProductosFiltrados;
 }
 
