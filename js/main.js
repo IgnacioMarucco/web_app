@@ -1,11 +1,10 @@
-//Segunda entrega de proyecto final: JSON + Storage + DOM + Eventos
 import {arrayProductos} from './productos.js';
 import { agregarAlCarro, mostrarCarro, existeCarro } from './carro.js';
 import {arrayDatos, registro, login} from './login.js';
 
 
 // Funcion para obtener los formatos de cada producto
-const mostrarFormatos = (id) => {
+const obtenerFormatos = (id) => {
   const producto = arrayProductos.find((producto) => producto.id == id);
 
   const formatosTexto = document.createElement(`div`);
@@ -34,40 +33,42 @@ const mostrarProductos = () => {
 		let containerCard = document.createElement(`div`);
 		containerCard.className = `col`;
 
+    // Obtengo los formatos de cada producto, con el respectivo precio y caracteristicas.
+		let formatos = obtenerFormatos(producto.id);
 
-		let formatos = mostrarFormatos(producto.id);
-
+    // Defino el contenido de cada card.
 		containerCard.innerHTML = 
       `<div class="card align-items-center text-center">
-      <h4 class="card-title">${producto.nombre}</h4>
-      <img class="card-img-top" src="../public/img_prod/${producto.id}.webp" alt="Imagen de ${producto.nombre}">
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDetalles${producto.id}">Ver Detalles</button>
+        <h4 class="card-title">${producto.nombre}</h4>
+        <img class="card-img-top" src="../public/img_prod/${producto.id}.webp" alt="Imagen de ${producto.nombre}">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDetalles${producto.id}">Ver Detalles</button>
 
-      <div class="modal fade" id="modalDetalles${producto.id}" tabindex="-1" aria-labelledby="modalLabel${producto.id}" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalLabel${producto.id}">${producto.nombre}</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <img src="../public/img_prod/${producto.id}.webp" alt="Imagen de ${producto.nombre}">
-              <p>${producto.descripcion}</p>
-              ${formatos.innerHTML}
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="button"  id="${producto.id}" class="btn btn-primary btnAgregarAlCarro">Agregar al Carro</button>
+        <div class="modal fade" id="modalDetalles${producto.id}" tabindex="-1" aria-labelledby="modalLabel${producto.id}" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel${producto.id}">${producto.nombre}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <img src="../public/img_prod/${producto.id}.webp" alt="Imagen de ${producto.nombre}">
+                <p>${producto.descripcion}</p>
+                ${formatos.innerHTML}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button"  id="${producto.id}" class="btn btn-primary btnAgregarAlCarro">Agregar al Carro</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
 
       <div>`;
 		gridProductos.appendChild(containerCard);
 	}
 
+  // En caso de no haber coincidencias con la busquda, muestro un mensaje.
 	if (arrayProductosFiltrados.length === 0) {
 		gridProductos.innerHTML = `<h2>No hay coincidencias!</h2>`;
 	}
