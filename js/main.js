@@ -78,11 +78,8 @@ const mostrarProductos = () => {
 	modalAgregarAlCarroBtn.forEach((boton) => boton.addEventListener("click", agregarAlCarro));
 }
 
-// Funcion para filtrar los productos a mostrar:
+// Funcion para filtrar los productos a mostrar. Puede ser una busqueda del usuario, o los productos destacados en el index. Por eso se definen las rutas a las imagenes.
 const filtrarProductos = () => {
-
-
-  //temporario: rutas de imagenes:
   let rutaImagen = ``;
 
   let arrayProductosFiltrados = [];

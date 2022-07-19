@@ -34,7 +34,10 @@ export const agregarAlCarro = (event) => {
   Toastify({
       text: `Agregaste ${producto.nombre} al carro.`,
       duration: 3500,
-      gravity: 'bottom',
+      offset: {
+        y: '5em'
+      },
+      close: true,
       style: {
         color: '#000',
         background: '#fcab31',
@@ -128,7 +131,24 @@ export const mostrarCarro = () => {
   pedirCantidadCuotasBtn.addEventListener('click', () => {pedirCantidadCuotasBtn.setAttribute('style', 'display:none !important')});
 
   const vaciarCarroBtn = document.getElementById(`vaciarCarroBtn`);
-  vaciarCarroBtn.addEventListener(`click`, vaciarCarro); 
+  vaciarCarroBtn.addEventListener(`click`, () => {
+    // Funcion que muestra un mensaje de confirmacion para vaciar el carro
+
+
+    Swal.fire({
+      title: '¿Estas seguro que quieres vaciar el carro?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Aceptar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        vaciarCarro();
+      }
+    })
+  } ); 
 }
 
 // Funcion para mostrar la cantidad de elementos del carro en el HTML
@@ -145,6 +165,7 @@ const cantidadCarroFuncion = () => {
 // Funcion para vaciar el carro:
 const vaciarCarro = () => {
   arrayCarro = [];
+  localStorage.clear();
   guardarCarro();
   mostrarCarro();
 }
@@ -210,7 +231,6 @@ function definirCuotas() {
         );
 
         cuotasTexto.innerHTML = ``;
-        localStorage.clear();
         vaciarCarro();
       }
     })
