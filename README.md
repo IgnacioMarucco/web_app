@@ -9,7 +9,11 @@ Esto es un proyecto **HTML/CSS/SASS/JS**. Link a la **live version** [aqui](http
 * Objetos.
 * Arrays.
 
-### Segunda Etapa | DOM.
+### Segunda Etapa | DOM y Local Storage.
 * Interactuar con HTML.
 * Eventos.
-* Storage y JSON.
+* Local Storage y JSON.
+
+### Tercera Etapa | Optimizacion y Librerias.
+* Operadores avanzados.
+* Librerias.
