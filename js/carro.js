@@ -164,6 +164,8 @@ const cantidadCarroFuncion = () => {
 
 // Funcion para vaciar el carro:
 const vaciarCarro = () => {
+  let cuotasTexto = document.getElementById(`cuotas`);
+  cuotasTexto.innerHTML = ``;
   arrayCarro = [];
   localStorage.clear();
   guardarCarro();
