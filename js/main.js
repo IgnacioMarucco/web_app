@@ -1,11 +1,16 @@
-import {arrayProductos} from './productos.js';
+// import {arrayProductos} from './productos.js';
 import { agregarAlCarro, mostrarCarro, existeCarro } from './carro.js';
 import {arrayDatos, registro, login} from './login.js';
 
+fetch("../js/data.json")
+  .then((response) => response.json())
+  .then((data) => {
+    mostrarProductos(data);
+  })
 
 // Funcion para obtener los formatos de cada producto
-const obtenerFormatos = (id) => {
-  const producto = arrayProductos.find((producto) => producto.id == id);
+const obtenerFormatos = (data, id) => {
+  const producto = data.find((producto) => producto.id == id);
 
   const formatosTexto = document.createElement(`div`);
 	formatosTexto.innerHTML = `Formatos: <br>`;
@@ -20,13 +25,13 @@ const obtenerFormatos = (id) => {
 }
 
 // Mostrar grid de productos en el HTML manipulando el DOM:
-const mostrarProductos = () => {
+const mostrarProductos = (data) => {
 	let gridProductos = document.getElementById(`grid-productos`) || document.getElementById(`grid-destacados`);
   // reseteo el contenido, para limpiarlo cada vez que filtro los productos a mostrar.
 	gridProductos.innerHTML = ``;
 
 	// Elijo que productos motrar
-	let {arrayProductosFiltrados, rutaImagen} = filtrarProductos();
+	let {arrayProductosFiltrados, rutaImagen} = filtrarProductos(data);
 
 	// Ahora creo las cards de cada producto a partir del array de productos filtrados.
 	for (const producto of arrayProductosFiltrados) {
@@ -34,7 +39,7 @@ const mostrarProductos = () => {
 		containerCard.className = `col`;
 
     // Obtengo los formatos de cada producto, con el respectivo precio y caracteristicas.
-		let formatos = obtenerFormatos(producto.id);
+		let formatos = obtenerFormatos(data, producto.id);
 
     // Defino el contenido de cada card.
 		containerCard.innerHTML = 
@@ -79,7 +84,7 @@ const mostrarProductos = () => {
 }
 
 // Funcion para filtrar los productos a mostrar. Puede ser una busqueda del usuario, o los productos destacados en el index. Por eso se definen las rutas a las imagenes.
-const filtrarProductos = () => {
+const filtrarProductos = (data) => {
   let rutaImagen = ``;
 
   let arrayProductosFiltrados = [];
@@ -88,15 +93,14 @@ const filtrarProductos = () => {
 	const buscadorBtn = document.getElementById(`buscadorBtn`);
 	if(buscadorBtn && buscador) {
     buscadorBtn.addEventListener(`click`, mostrarProductos);
-    arrayProductosFiltrados = arrayProductos.filter(producto => producto.nombre.toLowerCase().includes(`${buscador.value.toLowerCase()}`));
+    arrayProductosFiltrados = data.filter(producto => producto.nombre.toLowerCase().includes(`${buscador.value.toLowerCase()}`));
     rutaImagen = `../public/img_prod/`;
   } else {
-    arrayProductosFiltrados = arrayProductos.filter((producto) => producto.destacado === true);
+    arrayProductosFiltrados = data.filter((producto) => producto.destacado === true);
     rutaImagen = `./public/img_prod/`;
   }
 	return {arrayProductosFiltrados, rutaImagen};
 }
 
-window.onload = mostrarProductos();
 
 window.onload = existeCarro();
