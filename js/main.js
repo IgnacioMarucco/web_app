@@ -1,7 +1,7 @@
 import { agregarAlCarro, mostrarCarro, existeCarro } from './carro.js';
 import {arrayDatos, registro, login} from './login.js';
 
-fetch("../js/data.json")
+fetch("/js/data.json")
   .then((response) => response.json())
   .then((data) => {
     mostrarProductos(data);
