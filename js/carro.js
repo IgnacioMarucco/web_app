@@ -16,7 +16,7 @@ const guardarCarro = () => {
 }
 
 // Funcion agregar al carro el producto elegido por el usuario. 
-export const agregarAlCarro = (event) => {
+export const agregarAlCarro = (event, data) => {
   let identificador = Number(event.target.id);
   // Este es el producto que voy a pushear al arrayCarro y modificar su cantidad.
   let producto = data.find((element) => element.id == identificador);
