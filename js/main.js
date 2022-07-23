@@ -24,7 +24,7 @@ export const mostrarProductos = (data) => {
 	gridProductos.innerHTML = ``;
 
 	// Elijo que productos motrar
-	let {arrayProductosFiltrados} = filtrarProductos(data);
+	let {arrayProductosFiltrados, rutaImagen} = filtrarProductos(data);
 
 	// Ahora creo las cards de cada producto a partir del array de productos filtrados.
 	for (const producto of arrayProductosFiltrados) {
@@ -38,7 +38,7 @@ export const mostrarProductos = (data) => {
 		containerCard.innerHTML = 
       `<div class="card align-items-center text-center">
         <h4 class="card-title">${producto.nombre}</h4>
-        <img src="${producto.img}" alt="Imagen de ${producto.nombre}">
+        <img class="card-img-top" src="${rutaImagen}${producto.id}.webp" alt="Imagen de ${producto.nombre}">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDetalles${producto.id}">Ver Detalles</button>
 
         <div class="modal fade" id="modalDetalles${producto.id}" tabindex="-1" aria-labelledby="modalLabel${producto.id}" aria-hidden="true">
@@ -49,7 +49,7 @@ export const mostrarProductos = (data) => {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <img src="${producto.img}" alt="Imagen de ${producto.nombre}">
+                <img class="card-img-top" src="${rutaImagen}${producto.id}.webp" alt="Imagen de ${producto.nombre}">
                 <p>${producto.descripcion}</p>
                 ${formatos.innerHTML}
               </div>
@@ -80,6 +80,7 @@ export const mostrarProductos = (data) => {
 
 // Funcion para filtrar los productos a mostrar. Puede ser una busqueda del usuario, o los productos destacados en el index. Por eso se definen las rutas a las imagenes.
 const filtrarProductos = (data) => {
+  let rutaImagen = '';
   let arrayProductosFiltrados = [];
 	// Defino el campo de busqueda y le agrego el evento para mostrar los productos buscados. 
 	const buscador = document.getElementById(`buscador`);
@@ -87,11 +88,13 @@ const filtrarProductos = (data) => {
 	if(buscadorBtn && buscador) {
     buscadorBtn.addEventListener(`click`, mostrarProductos);
     arrayProductosFiltrados = data.filter(producto => producto.nombre.toLowerCase().includes(`${buscador.value.toLowerCase()}`));
+    rutaImagen = '../public/img_prod/';
   } else {
     arrayProductosFiltrados = data.filter((producto) => producto.destacado === true);
+    rutaImagen = './public/img_prod/';
     console.log(arrayProductosFiltrados);
   }
-	return {arrayProductosFiltrados};
+	return {arrayProductosFiltrados, rutaImagen};
 }
 
 

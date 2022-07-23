@@ -25,10 +25,14 @@ export const agregarAlCarro = (event, data) => {
   let formatoElegido = document.querySelector(`input[name="precioProducto${producto.id}"]:checked`).value;
   // Modificar la cantidad: si no existe, pushearlo y agregar una unidad. Si ya existe solo agregarle una unidad.
 	if (!(arrayCarro.some((element) => element.id == identificador))){
+    console.log(arrayCarro[0]);
     arrayCarro.push(producto);
-    arrayCarro[arrayCarro.length - 1].formatos[formatoElegido].cantidad = 1;
+    console.log(arrayCarro[0].formatos[formatoElegido-1]);
+    arrayCarro[arrayCarro.length - 1].formatos[formatoElegido-1].cantidad = 1;
+    console.log(arrayCarro[0]);
 	} else {
-    arrayCarro.find((element)=> element.id == identificador).formatos[formatoElegido].cantidad++;
+    arrayCarro.find((element)=> element.id == identificador).formatos[formatoElegido-1].cantidad++;
+    console.log(arrayCarro);
 	}
   // Notificacion:
   Toastify({
