@@ -1,12 +1,6 @@
 import { agregarAlCarro, mostrarCarro, existeCarro } from './carro.js';
 import {arrayDatos, registro, login} from './login.js';
 
-fetch("js/data.json")
-  .then((response) => response.json())
-  .then((data) => {
-    mostrarProductos(data);
-  })
-
 // Funcion para obtener los formatos de cada producto
 const obtenerFormatos = (data, id) => {
   const producto = data.find((producto) => producto.id == id);
@@ -24,7 +18,7 @@ const obtenerFormatos = (data, id) => {
 }
 
 // Mostrar grid de productos en el HTML manipulando el DOM:
-const mostrarProductos = (data) => {
+export const mostrarProductos = (data) => {
 	let gridProductos = document.getElementById(`grid-productos`) || document.getElementById(`grid-destacados`);
   // reseteo el contenido, para limpiarlo cada vez que filtro los productos a mostrar.
 	gridProductos.innerHTML = ``;
