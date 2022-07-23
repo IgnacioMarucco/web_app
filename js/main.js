@@ -95,6 +95,7 @@ const filtrarProductos = (data) => {
     arrayProductosFiltrados = data.filter(producto => producto.nombre.toLowerCase().includes(`${buscador.value.toLowerCase()}`));
   } else {
     arrayProductosFiltrados = data.filter((producto) => producto.destacado === true);
+    console.log(arrayProductosFiltrados);
   }
 	return {arrayProductosFiltrados};
 }
