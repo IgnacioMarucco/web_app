@@ -1,4 +1,4 @@
-import {arrayProductos} from './productos.js';
+// import {arrayProductos} from './productos.js';
 
 // Array de productos del carro
 let arrayCarro = [];
@@ -19,7 +19,7 @@ const guardarCarro = () => {
 export const agregarAlCarro = (event) => {
   let identificador = Number(event.target.id);
   // Este es el producto que voy a pushear al arrayCarro y modificar su cantidad.
-  let producto = arrayProductos.find((element) => element.id == identificador);
+  let producto = data.find((element) => element.id == identificador);
 
   // obtengo el formato elegido del producto elegido por el usuario. Si utilizara como value el precio, podria tener dos formatos con el mismo precio, por eso tengo un id unico para cada formato. (formato.id) en la funcion mostrarFormatos.
   let formatoElegido = document.querySelector(`input[name="precioProducto${producto.id}"]:checked`).value;

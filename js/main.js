@@ -30,7 +30,7 @@ const mostrarProductos = (data) => {
 	gridProductos.innerHTML = ``;
 
 	// Elijo que productos motrar
-	let {arrayProductosFiltrados  } = filtrarProductos(data);
+	let {arrayProductosFiltrados} = filtrarProductos(data);
 
 	// Ahora creo las cards de cada producto a partir del array de productos filtrados.
 	for (const producto of arrayProductosFiltrados) {
@@ -77,7 +77,9 @@ const mostrarProductos = (data) => {
 
 	// Agrego el event listener a cada boton (que tienen id unico), para pushear el producto comprado al arrayCarro
 	const modalAgregarAlCarroBtn = document.querySelectorAll(".btnAgregarAlCarro");
-	modalAgregarAlCarroBtn.forEach((boton) => boton.addEventListener("click", agregarAlCarro));
+	modalAgregarAlCarroBtn.forEach((boton) => boton.addEventListener("click", () => {
+    agregarAlCarro(event, data)
+  }));
 }
 
 // Funcion para filtrar los productos a mostrar. Puede ser una busqueda del usuario, o los productos destacados en el index. Por eso se definen las rutas a las imagenes.
