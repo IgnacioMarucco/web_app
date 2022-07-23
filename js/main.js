@@ -44,6 +44,7 @@ const mostrarProductos = (data) => {
 		containerCard.innerHTML = 
       `<div class="card align-items-center text-center">
         <h4 class="card-title">${producto.nombre}</h4>
+        <img src="${producto.img}" alt="Imagen de ${producto.nombre}">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDetalles${producto.id}">Ver Detalles</button>
 
         <div class="modal fade" id="modalDetalles${producto.id}" tabindex="-1" aria-labelledby="modalLabel${producto.id}" aria-hidden="true">
@@ -54,6 +55,7 @@ const mostrarProductos = (data) => {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
+                <img src="${producto.img}" alt="Imagen de ${producto.nombre}">
                 <p>${producto.descripcion}</p>
                 ${formatos.innerHTML}
               </div>
