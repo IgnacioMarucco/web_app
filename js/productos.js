@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then((response) => response.json())
     .then((data) => {
       mostrarProductos(data);
+      existeCarro();
   })
 })
 
