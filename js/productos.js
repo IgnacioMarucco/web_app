@@ -1,4 +1,4 @@
-import { mostrarProductos } from "./main.js";
+import { mostrarProductos } from "../js/main.js";
 
 document.addEventListener('DOMContentLoaded', () => {
   fetch("js/data.json")
