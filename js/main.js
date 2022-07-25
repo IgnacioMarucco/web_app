@@ -108,4 +108,4 @@ export const obtenerProductos = async (ruta) => {
   catch(error) {
     console.log('Error.')
   }
-}
+};
