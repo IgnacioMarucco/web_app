@@ -1,9 +1,6 @@
 // arrayDatos simularia una base de datos con usuarios registrados. Para facilitar pruebas ya tiene un objeto.
 export const arrayDatos = [{nombreReg: "Ignacio", telefonoReg: "12345", emailReg: "ignacio@mail.com", passwordReg: "1234"}];
 
-const formularioReg = document.getElementById(`formularioReg`);
-const formularioLogin = document.getElementById(`formularioLogin`);
-
 const nombreReg = document.getElementById(`nombreReg`);
 const telefonoReg = document.getElementById(`telefonoReg`);
 const emailReg = document.getElementById(`emailReg`);
@@ -30,6 +27,10 @@ export const registro = (event) => {
     passwordReg: passwordReg.value
   }
   arrayDatos.push(datosRegistro);
+
+  // Ocultar Modal
+  let modalReg = bootstrap.Modal.getInstance(document.getElementById('modalReg'));
+  modalReg.hide();
 }
 
 // Funcion login
@@ -48,11 +49,14 @@ export const login = (event) => {
       const loginBtn = document.getElementById(`loginBtn`);
       loginBtn.style.display = `none`;
       
-      console.log(nombreLogueado.innerHTML);
-
+      // Ocultar Modal
+      let modalLogin = bootstrap.Modal.getInstance(document.getElementById('modalLogin'));
+      modalLogin.hide();
   }else {
       console.log(`Contraseña incorrecta.`);
   }
+
+
 }
 
 // Validaciones para el formulario de Registro:
@@ -97,7 +101,9 @@ const validacionEmailLogin = () => {
   }
 }
 // Event listeners
+const formularioReg = document.getElementById(`formularioReg`);
 formularioReg.addEventListener(`submit`, registro);
+const formularioLogin = document.getElementById(`formularioLogin`);
 formularioLogin.addEventListener(`submit`, login);
 
 nombreReg.addEventListener(`blur`, validacionNombreReg);
