@@ -1,6 +1,4 @@
-// import {arrayProductos} from './productos.js';
-import { agregarAlCarro, mostrarCarro, existeCarro } from './carro.js';
-import {arrayDatos, registro, login} from './login.js';
+import { agregarAlCarro} from './carro.js';
 
 // Funcion para obtener los formatos de cada producto
 const obtenerFormatos = (data_productos, id) => {
