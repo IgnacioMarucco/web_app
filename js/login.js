@@ -16,6 +16,35 @@ const errorPasswordReg = document.getElementById(`errorPasswordReg`);
 
 const errorEmailLogin = document.getElementById(`errorEmailLogin`);
 
+// Funcion para guardar el nombre de usuario en local storage
+const guardarUsuarioLS = (usuario) => {
+	let usuarioJSON = JSON.stringify(usuario);
+	localStorage.setItem(`usuarioLogueado`, usuarioJSON);
+}
+
+// Funcion para verificar si ya esta logueado el usuario o no
+const estadoLogin = () => {
+  let usuarioLogueado = JSON.parse(localStorage.getItem(`usuarioLogueado`));
+  return usuarioLogueado;
+}
+
+// Funcion mostrar usuario:
+export const mostrarUsuario = () => {
+  let usuarioLogueado = estadoLogin();
+  const nombreRenderizado = document.getElementById(`nombre`);
+  if (usuarioLogueado) {
+    nombreRenderizado.innerHTML = `${usuarioLogueado.nombreReg}` ;
+    // Ocultar boton login
+    const loginBtn = document.getElementById(`loginBtn`);
+    loginBtn.style.display = `none`;
+    // Desactivar boton registro
+    let regBtn = document.getElementById(`regBtn`);
+    regBtn.style.pointerEvents = "none";
+  } else {
+    nombreRenderizado.innerHTML = `Registrate`;
+  }
+}
+
 // Funcion registro
 export const registro = (event) => {
   event.preventDefault();
@@ -41,22 +70,16 @@ export const login = (event) => {
   let usuario = arrayDatos.find((usuarioRegistrado) => usuarioRegistrado.emailReg === emailLogin.value);
   if(!usuario){
     errorEmailLogin.textContent = `La cuenta no existe.`;
-      console.log(`El usuario no existe.`);
   } else if (usuario.passwordReg === passwordLogin.value){
-      const nombreLogueado = document.getElementById(`nombreLogueado`);
-      nombreLogueado.innerHTML = `${usuario.nombreReg}`;
-      
-      const loginBtn = document.getElementById(`loginBtn`);
-      loginBtn.style.display = `none`;
-      
+      guardarUsuarioLS(usuario);
+      mostrarUsuario();
       // Ocultar Modal
       let modalLogin = bootstrap.Modal.getInstance(document.getElementById('modalLogin'));
       modalLogin.hide();
   }else {
-      console.log(`Contraseña incorrecta.`);
+    let errorPasswordLogin = document.getElementById(`errorPasswordLogin`);
+    errorPasswordLogin.textContent = 'Contraseña Incorrecta.'; 
   }
-
-
 }
 
 // Validaciones para el formulario de Registro:
