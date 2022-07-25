@@ -103,7 +103,6 @@ export const obtenerProductos = async (ruta) => {
   try {
     const response = await fetch(`${ruta}`)
     const data_productos = await response.json();
-    console.log(`test`);
     mostrarProductos(data_productos);
   }
   catch(error) {
