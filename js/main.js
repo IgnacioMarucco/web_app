@@ -96,7 +96,4 @@ const filtrarProductos = (data_productos) => {
     rutaImagen = `./public/img_prod/`;
   }
 	return {arrayProductosFiltrados, rutaImagen};
-}
-
-
-window.onload = existeCarro();
+};
