@@ -1,5 +1,5 @@
-import { obtenerProductos } from "js/main.js";
-import { existeCarro } from "js/carro.js";
+import { obtenerProductos } from "/js/main.js";
+import { existeCarro } from "/js/carro.js";
 
 let ruta = "js/data_productos.json";
 

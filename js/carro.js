@@ -1,5 +1,3 @@
-// import {arrayProductos} from './productos.js';
-
 // Array de productos del carro
 let arrayCarro = [];
 
