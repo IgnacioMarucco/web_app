@@ -17,3 +17,7 @@ Esto es un proyecto **HTML/CSS/SASS/JS**. Link a la **live version** [aqui](http
 ### Tercera Etapa | Optimizacion y Librerias.
 * Operadores avanzados.
 * Librerias.
+
+### Cuarta Etapa | Promesas, Async & Fetch
+* Peticiones Fetch.
+* Async - await.
