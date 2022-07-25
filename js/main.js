@@ -97,3 +97,15 @@ const filtrarProductos = (data_productos) => {
   }
 	return {arrayProductosFiltrados, rutaImagen};
 };
+
+// Funcion para obtener los productos:
+export const obtenerProductos = async (ruta) => {
+  try {
+    const response = await fetch(`${ruta}`)
+    const data_productos = await response.json();
+    mostrarProductos(data_productos);
+  }
+  catch(error) {
+    console.log('Error.')
+  }
+}
