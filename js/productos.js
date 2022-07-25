@@ -1,11 +1,18 @@
 import { mostrarProductos } from "../js/main.js";
 import { existeCarro } from "../js/carro.js";
 
+const obtenerProductos = async () => {
+  try {
+    const response = await fetch("../js/data_productos.json")
+    const data_productos = await response.json();
+    mostrarProductos(data_productos);
+  }
+  catch(error) {
+    console.log('Error.')
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  fetch("../js/data_productos.json")
-    .then((response) => response.json())
-    .then((data_productos) => {
-      mostrarProductos(data_productos);
-      existeCarro();
-  })
-})
+  obtenerProductos();
+  existeCarro();
+});
