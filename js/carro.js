@@ -1,4 +1,4 @@
-import {arrayProductos} from './productos.js';
+// import {arrayProductos} from './productos.js';
 
 // Array de productos del carro
 let arrayCarro = [];
@@ -16,19 +16,19 @@ const guardarCarro = () => {
 }
 
 // Funcion agregar al carro el producto elegido por el usuario. 
-export const agregarAlCarro = (event) => {
+export const agregarAlCarro = (event, data_productos) => {
   let identificador = Number(event.target.id);
   // Este es el producto que voy a pushear al arrayCarro y modificar su cantidad.
-  let producto = arrayProductos.find((element) => element.id == identificador);
+  let producto = data_productos.find((element) => element.id == identificador);
 
   // obtengo el formato elegido del producto elegido por el usuario. Si utilizara como value el precio, podria tener dos formatos con el mismo precio, por eso tengo un id unico para cada formato. (formato.id) en la funcion mostrarFormatos.
   let formatoElegido = document.querySelector(`input[name="precioProducto${producto.id}"]:checked`).value;
   // Modificar la cantidad: si no existe, pushearlo y agregar una unidad. Si ya existe solo agregarle una unidad.
 	if (!(arrayCarro.some((element) => element.id == identificador))){
     arrayCarro.push(producto);
-    arrayCarro[arrayCarro.length - 1].formatos[formatoElegido].cantidad = 1;
+    arrayCarro[arrayCarro.length - 1].formatos[formatoElegido-1].cantidad = 1;
 	} else {
-    arrayCarro.find((element)=> element.id == identificador).formatos[formatoElegido].cantidad++;
+    arrayCarro.find((element)=> element.id == identificador).formatos[formatoElegido-1].cantidad++;
 	}
   // Notificacion:
   Toastify({

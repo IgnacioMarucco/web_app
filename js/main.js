@@ -2,15 +2,9 @@
 import { agregarAlCarro, mostrarCarro, existeCarro } from './carro.js';
 import {arrayDatos, registro, login} from './login.js';
 
-fetch("../js/data.json")
-  .then((response) => response.json())
-  .then((data) => {
-    mostrarProductos(data);
-  })
-
 // Funcion para obtener los formatos de cada producto
-const obtenerFormatos = (data, id) => {
-  const producto = data.find((producto) => producto.id == id);
+const obtenerFormatos = (data_productos, id) => {
+  const producto = data_productos.find((producto) => producto.id == id);
 
   const formatosTexto = document.createElement(`div`);
 	formatosTexto.innerHTML = `Formatos: <br>`;
@@ -25,13 +19,13 @@ const obtenerFormatos = (data, id) => {
 }
 
 // Mostrar grid de productos en el HTML manipulando el DOM:
-const mostrarProductos = (data) => {
+export const mostrarProductos = (data_productos) => {
 	let gridProductos = document.getElementById(`grid-productos`) || document.getElementById(`grid-destacados`);
   // reseteo el contenido, para limpiarlo cada vez que filtro los productos a mostrar.
 	gridProductos.innerHTML = ``;
 
 	// Elijo que productos motrar
-	let {arrayProductosFiltrados, rutaImagen} = filtrarProductos(data);
+	let {arrayProductosFiltrados, rutaImagen} = filtrarProductos(data_productos);
 
 	// Ahora creo las cards de cada producto a partir del array de productos filtrados.
 	for (const producto of arrayProductosFiltrados) {
@@ -39,7 +33,7 @@ const mostrarProductos = (data) => {
 		containerCard.className = `col`;
 
     // Obtengo los formatos de cada producto, con el respectivo precio y caracteristicas.
-		let formatos = obtenerFormatos(data, producto.id);
+		let formatos = obtenerFormatos(data_productos, producto.id);
 
     // Defino el contenido de cada card.
 		containerCard.innerHTML = 
@@ -80,11 +74,13 @@ const mostrarProductos = (data) => {
 
 	// Agrego el event listener a cada boton (que tienen id unico), para pushear el producto comprado al arrayCarro
 	const modalAgregarAlCarroBtn = document.querySelectorAll(".btnAgregarAlCarro");
-	modalAgregarAlCarroBtn.forEach((boton) => boton.addEventListener("click", agregarAlCarro));
+	modalAgregarAlCarroBtn.forEach((boton) => boton.addEventListener("click", () => {
+    agregarAlCarro(event, data_productos);
+  }));
 }
 
 // Funcion para filtrar los productos a mostrar. Puede ser una busqueda del usuario, o los productos destacados en el index. Por eso se definen las rutas a las imagenes.
-const filtrarProductos = (data) => {
+const filtrarProductos = (data_productos) => {
   let rutaImagen = ``;
 
   let arrayProductosFiltrados = [];
@@ -93,10 +89,10 @@ const filtrarProductos = (data) => {
 	const buscadorBtn = document.getElementById(`buscadorBtn`);
 	if(buscadorBtn && buscador) {
     buscadorBtn.addEventListener(`click`, mostrarProductos);
-    arrayProductosFiltrados = data.filter(producto => producto.nombre.toLowerCase().includes(`${buscador.value.toLowerCase()}`));
+    arrayProductosFiltrados = data_productos.filter(producto => producto.nombre.toLowerCase().includes(`${buscador.value.toLowerCase()}`));
     rutaImagen = `../public/img_prod/`;
   } else {
-    arrayProductosFiltrados = data.filter((producto) => producto.destacado === true);
+    arrayProductosFiltrados = data_productos.filter((producto) => producto.destacado === true);
     rutaImagen = `./public/img_prod/`;
   }
 	return {arrayProductosFiltrados, rutaImagen};
