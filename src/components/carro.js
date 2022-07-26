@@ -125,7 +125,7 @@ export const mostrarCarro = () => {
   arrayCarro.length === 0 && botonesCarro.setAttribute('style', 'display:none !important');
 	
 	const pedirCantidadCuotasBtn = document.querySelector("#pedirCantidadCuotasBtn");
-	pedirCantidadCuotasBtn.addEventListener('click', definirCuotas);
+	pedirCantidadCuotasBtn.addEventListener('click', mostrarCuotas);
   pedirCantidadCuotasBtn.addEventListener('click', () => {pedirCantidadCuotasBtn.setAttribute('style', 'display:none !important')});
 
   const vaciarCarroBtn = document.getElementById(`vaciarCarroBtn`);
@@ -181,8 +181,8 @@ export const costoTotalFuncion = () => {
 
 }
 
-// Funcion Para mostrar los medios de pago, cuotas, direccion.
-function definirCuotas() {
+// Funcion Para mostrar las cuotas
+function mostrarCuotas() {
   let cuotasTexto = document.getElementById(`cuotas`);
   cuotasTexto.innerHTML = 
   `<fieldset>
