@@ -293,7 +293,8 @@ footer {
 
 /* PRODUCTOS */
 .productos_main .sidebar {
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  margin: 0 auto; }
   .productos_main .sidebar .navbar {
     background-color: #FFF !important; }
   .productos_main .sidebar a {
@@ -347,7 +348,7 @@ footer {
 
 @media screen and (min-width: 1024px) {
   .productos_main {
-    grid-template-areas: 'sidebar gridproductos' 'devoluciones devoluciones'; }
+    grid-template-areas: 'sidebar sidebar' 'gridproductos gridproductos' 'devoluciones devoluciones'; }
   .contacto_main {
     grid-template-areas: "info horarios formulario" "googleMap googleMap googleMap"; }
   .googleMap {

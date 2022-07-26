@@ -2,6 +2,7 @@
 .productos_main {
     .sidebar {
         text-transform: uppercase;
+        margin: 0 auto;
         .navbar {
             background-color: map-get($colors, bright) !important;
         }

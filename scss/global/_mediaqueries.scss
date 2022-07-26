@@ -68,7 +68,8 @@
     // Ajustes PAGINA PRODUCTOS
     .productos_main {
         grid-template-areas: 
-        'sidebar gridproductos'
+        'sidebar sidebar'
+        'gridproductos gridproductos'
         'devoluciones devoluciones'
         ;
     }
