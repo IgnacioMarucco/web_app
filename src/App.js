@@ -87,7 +87,9 @@ const filtrarProductos = (data_productos) => {
 	const buscador = document.getElementById(`buscador`);
 	const buscadorBtn = document.getElementById(`buscadorBtn`);
 	if(buscadorBtn && buscador) {
-    buscadorBtn.addEventListener(`click`, mostrarProductos);
+    buscadorBtn.addEventListener(`click`, () => {
+      mostrarProductos(data_productos);
+    });
     arrayProductosFiltrados = data_productos.filter(producto => producto.nombre.toLowerCase().includes(`${buscador.value.toLowerCase()}`));
     rutaImagen = `../public/img_prod/`;
   } else {
