@@ -1,20 +1,5 @@
 import { agregarAlCarro} from './carro.js';
 
-// Funcion para obtener los formatos de cada producto
-const obtenerFormatos = (data_productos, id) => {
-  const producto = data_productos.find((producto) => producto.id == id);
-
-  const formatosTexto = document.createElement(`div`);
-	formatosTexto.innerHTML = `Formatos: <br>`;
-	
-  const productoFormatos = producto.formatos;
-  
-  productoFormatos.forEach((formato) => {
-		formatosTexto.innerHTML += `<label for="${formato.peso}">${formato.peso} gr Precio: $${formato.precio}</label><input type="radio" name="precioProducto${producto.id}" value="${formato.id}" checked="checked"><br>`;
-  })
-
-	return formatosTexto;
-}
 
 // Mostrar grid de productos en el HTML manipulando el DOM:
 export const mostrarProductos = (data_productos) => {
@@ -30,7 +15,7 @@ export const mostrarProductos = (data_productos) => {
 		let containerCard = document.createElement(`div`);
 		containerCard.className = `col`;
 
-    // Obtengo los formatos de cada producto, con el respectivo precio y caracteristicas.
+    // Obtengo los formatos de cada producto, con el respectivo precio y caracteristicas, para ello llamo una funcion aparte.
 		let formatos = obtenerFormatos(data_productos, producto.id);
 
     // Defino el contenido de cada card.
@@ -75,6 +60,22 @@ export const mostrarProductos = (data_productos) => {
 	modalAgregarAlCarroBtn.forEach((boton) => boton.addEventListener("click", () => {
     agregarAlCarro(event, data_productos);
   }));
+}
+
+// Funcion para obtener los formatos de cada producto
+function obtenerFormatos (data_productos, id) {
+  const producto = data_productos.find((producto) => producto.id == id);
+
+  const formatosTexto = document.createElement(`div`);
+	formatosTexto.innerHTML = `Formatos: <br>`;
+	
+  const productoFormatos = producto.formatos;
+  
+  productoFormatos.forEach((formato) => {
+		formatosTexto.innerHTML += `<label for="${formato.peso}">${formato.peso} gr Precio: $${formato.precio}</label><input type="radio" name="precioProducto${producto.id}" value="${formato.id}" checked="checked"><br>`;
+  })
+
+	return formatosTexto;
 }
 
 // Funcion para filtrar los productos a mostrar. Puede ser una busqueda del usuario, o los productos destacados en el index. Por eso se definen las rutas a las imagenes.
