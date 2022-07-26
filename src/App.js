@@ -1,4 +1,4 @@
-import { agregarAlCarro} from './carro.js';
+import { agregarAlCarro} from './components/carro.js';
 
 
 // Mostrar grid de productos en el HTML manipulando el DOM:
