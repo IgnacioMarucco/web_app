@@ -165,7 +165,7 @@ const vaciarCarro = () => {
   let cuotasTexto = document.getElementById(`cuotas`);
   cuotasTexto.innerHTML = ``;
   arrayCarro = [];
-  localStorage.clear();
+  localStorage.removeItem(arrayCarro);
   guardarCarro();
   mostrarCarro();
 }
