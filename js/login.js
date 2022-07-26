@@ -16,8 +16,12 @@ const errorPasswordReg = document.getElementById(`errorPasswordReg`);
 
 const errorEmailLogin = document.getElementById(`errorEmailLogin`);
 
+const loginBtn = document.getElementById(`loginBtn`);
+const cerrarSesionBtn = document.getElementById(`cerrarSesionBtn`);
+
 // Funcion para guardar el nombre de usuario en local storage
 const guardarUsuarioLS = (usuario) => {
+  delete usuario.passwordReg;
 	let usuarioJSON = JSON.stringify(usuario);
 	localStorage.setItem(`usuarioLogueado`, usuarioJSON);
 }
@@ -35,13 +39,21 @@ export const mostrarUsuario = () => {
   if (usuarioLogueado) {
     nombreRenderizado.innerHTML = `${usuarioLogueado.nombreReg}` ;
     // Ocultar boton login
-    const loginBtn = document.getElementById(`loginBtn`);
+    
     loginBtn.style.display = `none`;
     // Desactivar boton registro
     let regBtn = document.getElementById(`regBtn`);
     regBtn.style.pointerEvents = "none";
+
+    // Activar boton logout
+    cerrarSesionBtn.style.display = `inline-block`;
   } else {
     nombreRenderizado.innerHTML = `Registrate`;
+    // Desactivar boton logout
+    cerrarSesionBtn.style.display = `none`;
+    // Mostrar boton login
+
+    loginBtn.style.display = `inline-block`;
   }
 }
 
@@ -80,6 +92,13 @@ export const login = (event) => {
     let errorPasswordLogin = document.getElementById(`errorPasswordLogin`);
     errorPasswordLogin.textContent = 'Contraseña Incorrecta.'; 
   }
+}
+
+// Funcion cerrar sesion
+const cerrarSesion = () => {
+  let cerrarSesionBtn = document.getElementById(`cerrarSesionBtn`);
+  localStorage.removeItem('usuarioLogueado');
+  mostrarUsuario();
 }
 
 // Validaciones para el formulario de Registro:
@@ -135,3 +154,5 @@ emailReg.addEventListener(`blur`, validacionEmailReg);
 passwordReg.addEventListener(`blur`, validacionPasswordReg);
 
 emailLogin.addEventListener(`blur`, validacionEmailLogin);
+
+cerrarSesionBtn.addEventListener('click', cerrarSesion);
