@@ -1,12 +1,12 @@
 import { agregarAlCarro} from './components/carro.js';
-import { obtenerProductos } from "./controllers/productosController.js";
+
 
 // Mostrar grid de productos en el HTML manipulando el DOM:
-export const mostrarProductos = async () => {
+export const mostrarProductos = (data_productos) => {
 	let gridProductos = document.getElementById(`grid-productos`) || document.getElementById(`grid-destacados`);
   // reseteo el contenido, para limpiarlo cada vez que filtro los productos a mostrar.
 	gridProductos.innerHTML = ``;
-  const data_productos = await obtenerProductos();
+
 	// Elijo que productos motrar
 	let {arrayProductosFiltrados, rutaImagen} = filtrarProductos(data_productos);
 
@@ -95,4 +95,16 @@ const filtrarProductos = (data_productos) => {
     rutaImagen = `./public/img_prod/`;
   }
 	return {arrayProductosFiltrados, rutaImagen};
+};
+
+// Funcion para obtener los productos:
+export const obtenerProductos = async (ruta) => {
+  try {
+    const response = await fetch(`${ruta}`)
+    const data_productos = await response.json();
+    mostrarProductos(data_productos);
+  }
+  catch(error) {
+    console.log('Error.')
+  }
 };

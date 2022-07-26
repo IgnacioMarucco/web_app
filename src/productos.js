@@ -1,9 +1,11 @@
+import { obtenerProductos } from "../src/App.js";
 import { existeCarro } from "../src/components/carro.js";
 import { mostrarUsuario } from "../src/components/login.js";
-import { mostrarProductos } from "../src/App.js";
+
+let ruta = "../src/data/data_productos.json";
 
 document.addEventListener('DOMContentLoaded', () => {
-  mostrarProductos();
+  obtenerProductos(ruta);
   existeCarro();
   mostrarUsuario();
 });
