@@ -24,13 +24,13 @@ const guardarUsuarioLS = (usuario) => {
   delete usuario.passwordReg;
 	let usuarioJSON = JSON.stringify(usuario);
 	localStorage.setItem(`usuarioLogueado`, usuarioJSON);
-}
+};
 
 // Funcion para verificar si ya esta logueado el usuario o no
 const estadoLogin = () => {
   let usuarioLogueado = JSON.parse(localStorage.getItem(`usuarioLogueado`));
   return usuarioLogueado;
-}
+};
 
 // Funcion mostrar usuario:
 export const mostrarUsuario = () => {
@@ -57,7 +57,7 @@ export const mostrarUsuario = () => {
     let regBtn = document.getElementById(`regBtn`);
     regBtn.style.pointerEvents = "auto";
   }
-}
+};
 
 // Funcion registro
 export const registro = (event) => {
@@ -74,7 +74,7 @@ export const registro = (event) => {
   // Ocultar Modal
   let modalReg = bootstrap.Modal.getInstance(document.getElementById('modalReg'));
   modalReg.hide();
-}
+};
 
 // Funcion login
 export const login = (event) => {
@@ -94,14 +94,13 @@ export const login = (event) => {
     let errorPasswordLogin = document.getElementById(`errorPasswordLogin`);
     errorPasswordLogin.textContent = 'Contraseña Incorrecta.'; 
   }
-}
+};
 
 // Funcion cerrar sesion
 const cerrarSesion = () => {
-  // let cerrarSesionBtn = document.getElementById(`cerrarSesionBtn`);
   localStorage.removeItem('usuarioLogueado');
   mostrarUsuario();
-}
+};
 
 // Validaciones para el formulario de Registro:
 const validacionNombreReg = () => {
@@ -110,7 +109,7 @@ const validacionNombreReg = () => {
   } else {
     errorNombreReg.textContent = ``;
   }
-}
+};
 
 const validacionEmailReg = () => {
   if (!(emailReg.value.length > 0 && emailReg.value.includes(`@`) && emailReg.value.includes(`.`))) {
@@ -118,7 +117,7 @@ const validacionEmailReg = () => {
   } else {
     errorEmailReg.textContent = ``;
   }
-}
+};
 
 const validacionTelefonoReg = () => {
   if (!(telefonoReg.value.length > 0)) {
@@ -126,7 +125,7 @@ const validacionTelefonoReg = () => {
   } else {
     errorTelefonoReg.textContent = ``;
   }
-}
+};
 
 const validacionPasswordReg = () => {
   if (!(passwordReg.value.length > 0)) {
@@ -134,7 +133,7 @@ const validacionPasswordReg = () => {
   } else {
     errorPasswordReg.textContent = ``;
   }
-}
+};
 
 // Validacion login
 const validacionEmailLogin = () => {
@@ -143,7 +142,8 @@ const validacionEmailLogin = () => {
 	} else {
     errorEmailLogin.textContent = ``;
   }
-}
+};
+
 // Event listeners
 const formularioReg = document.getElementById(`formularioReg`);
 formularioReg.addEventListener(`submit`, registro);

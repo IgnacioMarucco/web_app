@@ -5,13 +5,13 @@ let arrayCarro = [];
 export const existeCarro = () => {
   arrayCarro = JSON.parse(localStorage.getItem(`arrayCarro`)) || [];
   mostrarCarro();
-}
+};
 
 // Funcion para guardar el carro en local storage
 const guardarCarro = () => {
 	let arrayCarroJSON = JSON.stringify(arrayCarro);
 	localStorage.setItem(`arrayCarro`, arrayCarroJSON);
-}
+};
 
 // Funcion agregar al carro el producto elegido por el usuario. 
 export const agregarAlCarro = (event, data_productos) => {
@@ -44,7 +44,7 @@ export const agregarAlCarro = (event, data_productos) => {
 
   guardarCarro();
   mostrarCarro();
-}
+};
 
 // Funcion para eliminar elementos del carro
 const eliminarDelCarro = (event) => {
@@ -76,7 +76,7 @@ const eliminarDelCarro = (event) => {
 
 	guardarCarro();
 	mostrarCarro();
-}
+};
 
 // Funcion para mostrar en HTML el carro de compras 
 const mostrarCarro = () => {
@@ -132,8 +132,6 @@ const mostrarCarro = () => {
   const vaciarCarroBtn = document.getElementById(`vaciarCarroBtn`);
   vaciarCarroBtn.addEventListener(`click`, () => {
     // Funcion que muestra un mensaje de confirmacion para vaciar el carro
-
-
     Swal.fire({
       title: '¿Estas seguro que quieres vaciar el carro?',
       icon: 'warning',
@@ -148,7 +146,7 @@ const mostrarCarro = () => {
       }
     })
   } ); 
-}
+};
 
 // Funcion para mostrar la cantidad de elementos del carro en el HTML
 const cantidadCarroFuncion = () => {
@@ -159,7 +157,7 @@ const cantidadCarroFuncion = () => {
     cantidadProductos += producto?.formatos.reduce((acumulador,formato) => acumulador + Number(formato.cantidad), 0)
   })
   cantidadCarroTexto.innerHTML = `(${cantidadProductos})`;
-}
+};
 
 // Funcion para vaciar el carro:
 const vaciarCarro = () => {
@@ -169,7 +167,7 @@ const vaciarCarro = () => {
   localStorage.removeItem(arrayCarro);
   guardarCarro();
   mostrarCarro();
-}
+};
 
 // Funcion para calcular el costo total al usuario:
 const costoTotalFuncion = () => {
@@ -179,37 +177,36 @@ const costoTotalFuncion = () => {
     costoTotal += producto?.formatos.reduce((acumulador,formato) => acumulador + Number(formato.precio) * Number(formato.cantidad), 0)
   })
   return costoTotal;
-
-}
+};
 
 // Funcion Para mostrar las cuotas
 function mostrarCuotas() {
   let cuotasTexto = document.getElementById(`cuotas`);
   cuotasTexto.innerHTML = 
-  `<fieldset>
-    <legend>Elegi en cuantas cuotas deseas realizar el pago:</legend>
+    `<fieldset>
+      <legend>Elegi en cuantas cuotas deseas realizar el pago:</legend>
 
-    <div>
-      <input type="radio" id="1" name="cuotas" value="1" checked>
-      <label for="1">Pago Unico</label>
-    </div>
+      <div>
+        <input type="radio" id="1" name="cuotas" value="1" checked>
+        <label for="1">Pago Unico</label>
+      </div>
 
-    <div>
-      <input type="radio" id="3-cuotas" name="cuotas" value="3">
-      <label for="3-cuotas">3 Cuotas</label>
-    </div>
+      <div>
+        <input type="radio" id="3-cuotas" name="cuotas" value="3">
+        <label for="3-cuotas">3 Cuotas</label>
+      </div>
 
-    <div>
-      <input type="radio" id="6-cuotas" name="cuotas" value="6">
-      <label for="6-cuotas">6 Cuotas</label>
-    </div>
+      <div>
+        <input type="radio" id="6-cuotas" name="cuotas" value="6">
+        <label for="6-cuotas">6 Cuotas</label>
+      </div>
 
-    <div>
-      <input type="radio" id="12-cuotas" name="cuotas" value="12">
-      <label for="12-cuotas">12 Cuotas</label>
-    </div>
-  </fieldset>
-  <a id="mostrarCuotasBtn" type="submit" class="btn btn-success">Continuar</a>`;
+      <div>
+        <input type="radio" id="12-cuotas" name="cuotas" value="12">
+        <label for="12-cuotas">12 Cuotas</label>
+      </div>
+    </fieldset>
+    <a id="mostrarCuotasBtn" type="submit" class="btn btn-success">Continuar</a>`;
 
   let mostrarCuotasBtn = document.getElementById(`mostrarCuotasBtn`);
 
@@ -239,7 +236,7 @@ function mostrarCuotas() {
       }
     })
   });
-}
+};
 
 // Funcion para calcular el monto de las cuotas
 const calcularCuotas = () => {
@@ -247,4 +244,4 @@ const calcularCuotas = () => {
 	let cantidadCuotas = Number(document.querySelector(`input[name="cuotas"]:checked`).value);
   let costoCuota = costoTotal / cantidadCuotas;
   return {costoTotal, cantidadCuotas, costoCuota};
-}
+};
