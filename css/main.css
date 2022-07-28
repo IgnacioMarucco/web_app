@@ -292,6 +292,10 @@ footer {
     padding: 10px; }
 
 /* PRODUCTOS */
+.modal-body .item-carro {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); }
+
 .productos_main .sidebar {
   text-transform: uppercase;
   margin: 0 auto; }

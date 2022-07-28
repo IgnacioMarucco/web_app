@@ -87,7 +87,7 @@ const mostrarCarro = () => {
 	for (const producto of arrayCarro) {
     for (const formato of producto.formatos) {
       let itemCarro = document.createElement(`div`);
-      itemCarro.className = `d-flex flex-row justify-content-between`;  
+      itemCarro.className = `item-carro`;  
       if (formato.cantidad > 0) {
         // Desestructuracion objeto formato
         const {peso, precio, cantidad } = formato;
