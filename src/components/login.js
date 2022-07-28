@@ -85,11 +85,11 @@ export const login = (event) => {
   if(!usuario){
     errorEmailLogin.textContent = `La cuenta no existe.`;
   } else if (usuario.passwordReg === passwordLogin.value){
-      guardarUsuarioLS(usuario);
-      mostrarUsuario();
-      // Ocultar Modal
-      let modalLogin = bootstrap.Modal.getInstance(document.getElementById('modalLogin'));
-      modalLogin.hide();
+    guardarUsuarioLS(usuario);
+    mostrarUsuario();
+    // Ocultar Modal
+    let modalLogin = bootstrap.Modal.getInstance(document.getElementById('modalLogin'));
+    modalLogin.hide();
   }else {
     let errorPasswordLogin = document.getElementById(`errorPasswordLogin`);
     errorPasswordLogin.textContent = 'Contraseña Incorrecta.'; 
