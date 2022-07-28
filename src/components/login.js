@@ -1,5 +1,5 @@
 // arrayDatos simularia una base de datos con usuarios registrados. Para facilitar pruebas ya tiene un objeto.
-export const arrayDatos = [{nombreReg: "Ignacio", telefonoReg: "12345", emailReg: "ignacio@mail.com", passwordReg: "1234"}];
+const arrayDatos = [{nombreReg: "Ignacio", telefonoReg: "12345", emailReg: "ignacio@mail.com", passwordReg: "1234"}];
 
 const nombreReg = document.getElementById(`nombreReg`);
 const telefonoReg = document.getElementById(`telefonoReg`);
@@ -52,8 +52,10 @@ export const mostrarUsuario = () => {
     // Desactivar boton logout
     cerrarSesionBtn.style.display = `none`;
     // Mostrar boton login
-
     loginBtn.style.display = `inline-block`;
+    // Activar boton registro
+    let regBtn = document.getElementById(`regBtn`);
+    regBtn.style.pointerEvents = "auto";
   }
 }
 
@@ -96,7 +98,7 @@ export const login = (event) => {
 
 // Funcion cerrar sesion
 const cerrarSesion = () => {
-  let cerrarSesionBtn = document.getElementById(`cerrarSesionBtn`);
+  // let cerrarSesionBtn = document.getElementById(`cerrarSesionBtn`);
   localStorage.removeItem('usuarioLogueado');
   mostrarUsuario();
 }
