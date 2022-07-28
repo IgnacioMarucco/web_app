@@ -78,7 +78,7 @@ function obtenerFormatos (data_productos, id) {
   const producto = data_productos.find((producto) => producto.id == id);
 
   const formatosTexto = document.createElement(`div`);
-	formatosTexto.innerHTML = `Formatos: <br>`;
+	formatosTexto.innerHTML = `<br> <p>Formatos:</p> <br>`;
 	
   const productoFormatos = producto.formatos;
   
