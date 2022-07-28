@@ -233,6 +233,9 @@ function mostrarCuotas() {
 
         cuotasTexto.innerHTML = ``;
         vaciarCarro();
+        // Ocultar modal carro
+        let modalCarro = bootstrap.Modal.getInstance(document.getElementById('modalCarro'));
+        modalCarro.hide();
       }
     })
   });
