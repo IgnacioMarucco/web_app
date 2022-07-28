@@ -1,13 +1,24 @@
 import { agregarAlCarro} from './components/carro.js';
 
+// Funcion para obtener los productos:
+export const obtenerProductos = async (ruta) => {
+  try {
+    const response = await fetch(`${ruta}`)
+    const data_productos = await response.json();
+    mostrarProductos(data_productos);
+  }
+  catch(error) {
+    console.log('Error.')
+  }
+};
 
 // Mostrar grid de productos en el HTML manipulando el DOM:
-export const mostrarProductos = (data_productos) => {
+const mostrarProductos = (data_productos) => {
 	let gridProductos = document.getElementById(`grid-productos`) || document.getElementById(`grid-destacados`);
   // reseteo el contenido, para limpiarlo cada vez que filtro los productos a mostrar.
 	gridProductos.innerHTML = ``;
 
-	// Elijo que productos motrar
+	// Elijo que productos motrar.
 	let {arrayProductosFiltrados, rutaImagen} = filtrarProductos(data_productos);
 
 	// Ahora creo las cards de cada producto a partir del array de productos filtrados.
@@ -62,7 +73,7 @@ export const mostrarProductos = (data_productos) => {
   }));
 }
 
-// Funcion para obtener los formatos de cada producto
+// Funcion para obtener los formatos de cada producto.
 function obtenerFormatos (data_productos, id) {
   const producto = data_productos.find((producto) => producto.id == id);
 
@@ -78,7 +89,7 @@ function obtenerFormatos (data_productos, id) {
 	return formatosTexto;
 }
 
-// Funcion para filtrar los productos a mostrar. Puede ser una busqueda del usuario, o los productos destacados en el index. Por eso se definen las rutas a las imagenes.
+// Funcion para filtrar los productos a mostrar. Puede ser una busqueda del usuario, o los productos destacados en el index. Por eso se definen las rutas a las imagenes al utilizar relative paths.
 const filtrarProductos = (data_productos) => {
   let rutaImagen = ``;
 
@@ -90,23 +101,13 @@ const filtrarProductos = (data_productos) => {
     buscadorBtn.addEventListener(`click`, () => {
       mostrarProductos(data_productos);
     });
+    // Filtro los productos a mostrar segun la busqueda del usuario.
     arrayProductosFiltrados = data_productos.filter(producto => producto.nombre.toLowerCase().includes(`${buscador.value.toLowerCase()}`));
     rutaImagen = `../public/img_prod/`;
   } else {
+    // Filtro los productos a mostrar segun si son destacados o no.
     arrayProductosFiltrados = data_productos.filter((producto) => producto.destacado === true);
     rutaImagen = `./public/img_prod/`;
   }
 	return {arrayProductosFiltrados, rutaImagen};
-};
-
-// Funcion para obtener los productos:
-export const obtenerProductos = async (ruta) => {
-  try {
-    const response = await fetch(`${ruta}`)
-    const data_productos = await response.json();
-    mostrarProductos(data_productos);
-  }
-  catch(error) {
-    console.log('Error.')
-  }
 };

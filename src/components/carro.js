@@ -1,7 +1,7 @@
 // Array de productos del carro
 let arrayCarro = [];
 
-// Funcion para verificar si existe ya un carrito de compras, si es asi, tomar sus valores.
+// Funcion para verificar si existe ya un carrito de compras, si es asi, utilizarlo en vez de empezar de nuevo.
 export const existeCarro = () => {
   arrayCarro = JSON.parse(localStorage.getItem(`arrayCarro`)) || [];
   mostrarCarro();
@@ -28,9 +28,9 @@ export const agregarAlCarro = (event, data_productos) => {
 	} else {
     arrayCarro.find((element)=> element.id == identificador).formatos[formatoElegido-1].cantidad++;
 	}
-  // Notificacion:
+  // Notificacion al usuario, detallando el nombre del producto y el peso elegido.
   Toastify({
-      text: `Agregaste ${producto.nombre} al carro.`,
+      text: `Agregaste ${producto.nombre}, ${producto.formatos[formatoElegido-1].peso} gr al carro.`,
       duration: 3500,
       offset: {
         y: '5em'
@@ -47,7 +47,7 @@ export const agregarAlCarro = (event, data_productos) => {
 }
 
 // Funcion para eliminar elementos del carro
-export const eliminarDelCarro = (event) => {
+const eliminarDelCarro = (event) => {
   const identificadores = event.target.id.split('-');
 
   const [identificadorProducto, identificadorFormato] = identificadores;
@@ -79,7 +79,7 @@ export const eliminarDelCarro = (event) => {
 }
 
 // Funcion para mostrar en HTML el carro de compras 
-export const mostrarCarro = () => {
+const mostrarCarro = () => {
   // Mostrar productos:
 	let carro = document.getElementById(`carro`);
 	carro.innerHTML = ``;
@@ -128,6 +128,7 @@ export const mostrarCarro = () => {
 	pedirCantidadCuotasBtn.addEventListener('click', mostrarCuotas);
   pedirCantidadCuotasBtn.addEventListener('click', () => {pedirCantidadCuotasBtn.setAttribute('style', 'display:none !important')});
 
+  // Agrego el evento para vaciar carro.
   const vaciarCarroBtn = document.getElementById(`vaciarCarroBtn`);
   vaciarCarroBtn.addEventListener(`click`, () => {
     // Funcion que muestra un mensaje de confirmacion para vaciar el carro
@@ -171,7 +172,7 @@ const vaciarCarro = () => {
 }
 
 // Funcion para calcular el costo total al usuario:
-export const costoTotalFuncion = () => {
+const costoTotalFuncion = () => {
   let costoTotal = 0; 
 
   arrayCarro.forEach((producto) => {
